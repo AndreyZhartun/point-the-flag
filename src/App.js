@@ -1,24 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import { Container, Row, Col } from 'reactstrap';
+import { Card, CardHeader, CardBody, CardText, CardFooter } from 'reactstrap';
+
+import GuessMap from './components/GuessMap';
+import Header from './components/Header';
+import { FLAGS } from './shared/flags';
+
+function App(){
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Container>
+        <Row className="row row-content">
+          <Col xs="12" sm="6">
+            <GuessMap />
+          </Col>
+          <Col xs="12" sm="6">
+            <Card>
+              <CardHeader>Card header</CardHeader>
+              <CardBody>
+                <CardText>text</CardText>
+              </CardBody>
+              <CardFooter>:)</CardFooter>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
