@@ -2,74 +2,89 @@ import React, { createRef, Component } from 'react';
 import { Button } from 'reactstrap';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
-type Position = { lat: number, lng: number }
+import { Container, Row, Col } from 'reactstrap';
+import { Card, CardHeader, CardBody, CardText, CardFooter } from 'reactstrap';
 
-type State = {
-  center: Position,
-  marker: Position,
-  zoom: number,
-  draggable: boolean,
+//import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { changeMarkerPosition } from '../redux/ActionCreators'
+
+const mapStateToProps = state => {
+  return {
+    flags: state.flags,
+    map: state.map,
+    marker: state.marker
+  }
 }
 
-export default class GuessMap extends Component<{}, State> {
-  state = {
-    center: {
-      lat: 51.505,
-      lng: -0.09,
-    },
-    marker: {
-      lat: 51.505,
-      lng: -0.09,
-    },
-    zoom: 3,
-    draggable: true,
-    popupText: 'popup-text'
-  }
+const mapDispatchToProps = dispatch => ({
+  changeMarkerPosition: (lat, lng) => dispatch(changeMarkerPosition(lat, lng))
+});
+
+class GuessMap extends Component<{}, State> {
   // $FlowFixMe: ref
   //refmarker = createRef<Marker>()
   refmarker = createRef()
 
   toggleDraggable = () => {
-    this.setState({ draggable: !this.state.draggable })
+    // + action
+    //this.setState({ draggable: !this.state.draggable })
   }
 
-  updatePosition = () => {
-    const marker = this.refmarker.current
+  updatePosition = () => {    
+    const marker = this.refmarker.current;
     if (marker != null) {
-      this.setState({
-        marker: marker.leafletElement.getLatLng(),
-        popupText: 'Current position: ' + marker.leafletElement.getLatLng()
-      })
+      const newPosition = marker.leafletElement.getLatLng();
+      // + action
+      changeMarkerPosition(newPosition.lat, newPosition.lng);
     }
   }
 
   handleClick = () => {
+    // + action
     //send a http request to get country
   }
 
   render() {
-    const position = [this.state.center.lat, this.state.center.lng]
-    const markerPosition = [this.state.marker.lat, this.state.marker.lng]
+    const position = [this.props.map.center.lat, this.props.map.center.lng]
+    const markerPosition = [this.props.marker.lat, this.props.marker.lng]
 
     return (
-      <Map center={position} zoom={this.state.zoom}>
-        <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker
-          draggable={this.state.draggable}
-          onDragend={this.updatePosition}
-          position={markerPosition}
-          ref={this.refmarker}>
-          <Popup minWidth={90}>
-            <span onClick={this.toggleDraggable}>
-              {this.state.popupText}
-            </span>
-            <Button color="primary" size="sm" onClick={this.handleClick}> Click me</Button>
-          </Popup>
-        </Marker>
-      </Map>
+      <Container>
+        <Row className="row row-content">
+          <Col xs="12" sm="6">
+            <Map center={position} zoom={this.props.map.zoom}>
+              <TileLayer
+                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker
+                draggable={this.props.marker.draggable}
+                onDragend={this.updatePosition}
+                position={markerPosition}
+                ref={this.refmarker}>
+                <Popup minWidth={90}>
+                  <span onClick={this.toggleDraggable}>
+                    {this.props.marker.draggable}
+                  </span>
+                  <Button color="primary" size="sm" onClick={this.handleClick}> Click me</Button>
+                </Popup>
+              </Marker>
+            </Map>
+          </Col>
+          <Col xs="12" sm="6">
+            <Card>
+              <CardHeader>Card header</CardHeader>
+              <CardBody>
+                <CardText>text</CardText>
+              </CardBody>
+              <CardFooter>:)</CardFooter>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     )
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(GuessMap);

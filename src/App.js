@@ -1,35 +1,24 @@
 import React from 'react';
-//import logo from './logo.svg';
 import './App.css';
 
-import { Container, Row, Col } from 'reactstrap';
-import { Card, CardHeader, CardBody, CardText, CardFooter } from 'reactstrap';
+//import { Container, Row, Col } from 'reactstrap';
+//import { Card, CardHeader, CardBody, CardText, CardFooter } from 'reactstrap';
 
 import GuessMap from './components/GuessMap';
 import Header from './components/Header';
-import { FLAGS } from './shared/flags';
+//import { FLAGS } from './shared/flags';
+
+import { Provider } from 'react-redux';
+import { ConfigureStore } from './redux/configureStore';
+
+const store = ConfigureStore();
 
 function App(){
   return (
-    <div className="App">
+    <Provider store={store}>
       <Header />
-      <Container>
-        <Row className="row row-content">
-          <Col xs="12" sm="6">
-            <GuessMap />
-          </Col>
-          <Col xs="12" sm="6">
-            <Card>
-              <CardHeader>Card header</CardHeader>
-              <CardBody>
-                <CardText>text</CardText>
-              </CardBody>
-              <CardFooter>:)</CardFooter>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+      <GuessMap />
+    </Provider>
   );
 }
 
