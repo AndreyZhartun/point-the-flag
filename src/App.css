@@ -15,3 +15,7 @@
 .leaflet-container {
     min-height: 500px;
 }
+
+.card-img {
+    width: 33%;
+}

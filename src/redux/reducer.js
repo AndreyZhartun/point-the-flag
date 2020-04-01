@@ -3,6 +3,9 @@ import * as ActionTypes from './ActionTypes';
 
 export const initialState = {
     flags: FLAGS,
+    game: {
+        currentFlagIndex: 0
+    },
     map: {
         center: {
             lat: 51.505,
@@ -29,6 +32,15 @@ export const Reducer = (state = initialState, action) => {
             return {
                 ...state,
                 marker: newMarker
+            };
+        case ActionTypes.CHANGE_CURRENT_FLAG_INDEX:
+            const newIndex = action.payload.index;
+            const newGame = {
+                index: newIndex
+            };
+            return {
+                ...state,
+                game: newGame
             };
         default:
             return state;

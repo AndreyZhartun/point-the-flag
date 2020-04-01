@@ -7,3 +7,10 @@ export const changeMarkerPosition = (lat, lng) => ({
         lng: lng,
     }
 });
+
+export const changeCurrentFlagIndex = (index) => ({
+    type: ActionTypes.CHANGE_CURRENT_FLAG_INDEX,
+    payload: {
+        index: index
+    }
+});

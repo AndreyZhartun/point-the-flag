@@ -3,11 +3,10 @@ import { Button } from 'reactstrap';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
 import { Container, Row, Col } from 'reactstrap';
-import { Card, CardHeader, CardBody, CardText, CardFooter } from 'reactstrap';
+import GuessGame from './GuessGame';
 
-//import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { changeMarkerPosition } from '../redux/ActionCreators'
+import { changeMarkerPosition } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
   return {
@@ -73,13 +72,7 @@ class GuessMap extends Component<{}, State> {
             </Map>
           </Col>
           <Col xs="12" sm="6">
-            <Card>
-              <CardHeader>Card header</CardHeader>
-              <CardBody>
-                <CardText>text</CardText>
-              </CardBody>
-              <CardFooter>:)</CardFooter>
-            </Card>
+            <GuessGame />
           </Col>
         </Row>
       </Container>
