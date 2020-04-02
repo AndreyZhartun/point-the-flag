@@ -19,3 +19,9 @@
 .media-object {
     width: 30%;
 }
+
+.gameCard {
+    margin-top: 5px;
+    min-height: 1px;
+    padding: 1.25rem;
+}

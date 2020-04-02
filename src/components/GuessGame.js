@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons'
 
 import { connect } from 'react-redux';
-import { changeCurrentFlag } from '../redux/ActionCreators';
+import { changeCurrentFlag, fetchAddress, setRandomFirstIndex } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
   return {
@@ -17,10 +17,25 @@ const mapStateToProps = state => {
 }
   
 const mapDispatchToProps = dispatch => ({
-  changeCurrentFlag: () => {dispatch(changeCurrentFlag())}
+  changeCurrentFlag: () => {dispatch(changeCurrentFlag())},
+  fetchAddress: () => {dispatch(fetchAddress())},
+  setRandomFirstIndex: () => {dispatch(setRandomFirstIndex())}
 });
 
 class GuessGame extends Component {
+  //handle click
+  handleConfirmation = () => {
+    this.props.fetchAddress();
+    this.props.changeCurrentFlag();
+  }
+
+  handleStart = () => {
+    //component did mount?
+    if (!this.props.game.isInProgress){
+      this.props.setRandomFirstIndex();
+    }
+  }
+
   render() {
     return (
       <Card className="text-center">
@@ -31,9 +46,14 @@ class GuessGame extends Component {
             Drag the marker on the map to point the country.
           </Media>
         </Media>
-        <Button color="primary" id="toggler">Start the game <FontAwesomeIcon icon={faChevronDown} /></Button>
+        <Button color="primary" id="toggler" onClick={this.handleStart}>
+          Start the game <FontAwesomeIcon icon={faChevronDown} />
+        </Button>
         <UncontrolledCollapse toggler="#toggler">
-          <Card>
+          <Card className="gameCard">
+            <CardText>
+              Correct answers: {this.props.game.correctAnswers} out of {this.props.game.shownFlags.length} attempts.
+            </CardText>
             <CardText>Which country uses this flag?</CardText>
             <Media left>
               <Media object src={this.props.flags[this.props.game.currentFlagIndex].path} alt="Image" />   
@@ -47,7 +67,7 @@ class GuessGame extends Component {
                     "No marker found"}
                 </span>
               </CardText>
-              <Button color="primary" onClick={this.props.changeCurrentFlag}>Confirm selection</Button>
+              <Button color="primary" onClick={this.handleConfirmation}>Confirm selection</Button>
             </CardBody>
           </Card>
         </UncontrolledCollapse>

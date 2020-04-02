@@ -1,0 +1,1 @@
+export const baseUrl = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&';

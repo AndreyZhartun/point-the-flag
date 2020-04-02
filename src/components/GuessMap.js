@@ -37,11 +37,6 @@ class GuessMap extends Component<{}, State> {
     }
   }
 
-  handleClick = () => {
-    // + action
-    //send a http request to get country
-  }
-
   render() {
     const position = [this.props.map.center.lat, this.props.map.center.lng]
     const markerPosition = [this.props.marker.lat, this.props.marker.lng]

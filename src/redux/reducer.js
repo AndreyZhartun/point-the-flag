@@ -5,7 +5,9 @@ export const initialState = {
     flags: FLAGS,
     game: {
         currentFlagIndex: 1,
-        shownFlags: []
+        shownFlags: [],
+        correctAnswers: 0,
+        isInProgress: false
     },
     map: {
         center: {
@@ -25,11 +27,10 @@ export const Reducer = (state, action) => {
     switch (action.type) {
         //Map
         case ActionTypes.CHANGE_MARKER_POSITION:
-            var newPosition = action.payload;
             const newMarker = {
-                lat: newPosition.lat,
-                lng: newPosition.lng,
-                draggable: state.marker.draggable
+                ...(state.marker),
+                lat: action.payload.lat,
+                lng: action.payload.lng
             };
             return {
                 ...state,
@@ -38,28 +39,40 @@ export const Reducer = (state, action) => {
         //Game
         case ActionTypes.ADD_FLAG_TO_SHOWN_FLAGS:
             var newArray = state.game.shownFlags.concat(action.payload.index);
-            const gameWithNewShownGames = {
+            const gameWithNewShownFlags = {
                 ...(state.game),
                 shownFlags: newArray
-                //currentFlagIndex: state.currentFlagIndex
-                
             }
             return {
                 ...state,
-                game: gameWithNewShownGames
+                game: gameWithNewShownFlags
             };
         case ActionTypes.CHANGE_CURRENT_FLAG_INDEX:
-            const newIndex = action.payload.index;
-            console.log(newIndex);
             const gameWithNewIndex = {
                 ...(state.game),
-                currentFlagIndex: newIndex
-                //shownFlags: state.shownFlags
+                currentFlagIndex: action.payload.index
             };
             return {
                 ...state,
                 game: gameWithNewIndex
             };
+        case ActionTypes.COUNT_CORRECT_ANSWER:
+            const newCorrectAnswers = state.game.correctAnswers + 1;
+            return {
+                ...state,
+                game: {
+                    ...(state.game),
+                    correctAnswers: newCorrectAnswers
+                }
+            };
+        case ActionTypes.CHANGE_GAME_STATUS:
+            return {
+                ...state,
+                game: {
+                    ...(state.game),
+                    isInProgress: action.payload.status
+                }
+            }
         default:
             return state;
     }
