@@ -1,42 +1,61 @@
-import React, { createRef, Component } from 'react';
+import React, { Component } from 'react';
 
-import { Card, CardHeader, CardBody, CardText, CardImg, CardFooter, Button } from 'reactstrap';
-import { Media } from 'reactstrap';
+import { Card, CardHeader, CardBody, CardText, CardFooter, Button } from 'reactstrap';
+import { Media, UncontrolledCollapse } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons'
 
 import { connect } from 'react-redux';
-import { changeMarkerPosition } from '../redux/ActionCreators';
+import { changeCurrentFlag } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
-    return {
-      flags: state.flags,
-      map: state.map,
-      marker: state.marker
-    }
+  return {
+    flags: state.flags,
+    game: state.game,
+    marker: state.marker
   }
+}
   
 const mapDispatchToProps = dispatch => ({
-  changeMarkerPosition: (lat, lng) => dispatch(changeMarkerPosition(lat, lng))
+  changeCurrentFlag: () => {dispatch(changeCurrentFlag())}
 });
 
 class GuessGame extends Component {
   render() {
     return (
-      <Card>
-      <CardHeader>Card header</CardHeader>
-      <CardBody className="text-center">
-        <CardText>coordinates here</CardText>
-        <Media left>
-            <Media object src="assets/country_flags/de.png" alt="Generic placeholder image" />
-        </Media>
+      <Card className="text-center">
+      <CardHeader>Guess the country by its flag!</CardHeader>
+      <CardBody>        
         <Media body>
-            <Media heading>
-            Media heading
-            </Media>
-            Cras sit amet nibh libero, in
+          <Media heading>
+            Drag the marker on the map to point the country.
+          </Media>
         </Media>
-        <Button>click me</Button>
+        <Button color="primary" id="toggler">Start the game <FontAwesomeIcon icon={faChevronDown} /></Button>
+        <UncontrolledCollapse toggler="#toggler">
+          <Card>
+            <CardText>Which country uses this flag?</CardText>
+            <Media left>
+              <Media object src={this.props.flags[this.props.game.currentFlagIndex].path} alt="Image" />   
+            </Media>
+            <CardBody>
+              <CardText>
+                <FontAwesomeIcon icon={faMapMarkedAlt} />
+                <span>
+                  {this.props.marker ? 
+                    " " + this.props.marker.lat +", "+ this.props.marker.lng :
+                    "No marker found"}
+                </span>
+              </CardText>
+              <Button color="primary" onClick={this.props.changeCurrentFlag}>Confirm selection</Button>
+            </CardBody>
+          </Card>
+        </UncontrolledCollapse>
       </CardBody>
-      <CardFooter>:)</CardFooter>
+      <CardFooter className="muted">
+        Made with React and leaflet.js
+        <br/>Address lookup uses Nominatim API
+      </CardFooter>
       </Card>
     )
   }

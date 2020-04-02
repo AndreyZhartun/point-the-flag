@@ -4,7 +4,8 @@ import * as ActionTypes from './ActionTypes';
 export const initialState = {
     flags: FLAGS,
     game: {
-        currentFlagIndex: 0
+        currentFlagIndex: 1,
+        shownFlags: []
     },
     map: {
         center: {
@@ -20,8 +21,9 @@ export const initialState = {
     }
 };
 
-export const Reducer = (state = initialState, action) => {
+export const Reducer = (state, action) => {
     switch (action.type) {
+        //Map
         case ActionTypes.CHANGE_MARKER_POSITION:
             var newPosition = action.payload;
             const newMarker = {
@@ -33,14 +35,30 @@ export const Reducer = (state = initialState, action) => {
                 ...state,
                 marker: newMarker
             };
+        //Game
+        case ActionTypes.ADD_FLAG_TO_SHOWN_FLAGS:
+            var newArray = state.game.shownFlags.concat(action.payload.index);
+            const gameWithNewShownGames = {
+                ...(state.game),
+                shownFlags: newArray
+                //currentFlagIndex: state.currentFlagIndex
+                
+            }
+            return {
+                ...state,
+                game: gameWithNewShownGames
+            };
         case ActionTypes.CHANGE_CURRENT_FLAG_INDEX:
             const newIndex = action.payload.index;
-            const newGame = {
-                index: newIndex
+            console.log(newIndex);
+            const gameWithNewIndex = {
+                ...(state.game),
+                currentFlagIndex: newIndex
+                //shownFlags: state.shownFlags
             };
             return {
                 ...state,
-                game: newGame
+                game: gameWithNewIndex
             };
         default:
             return state;

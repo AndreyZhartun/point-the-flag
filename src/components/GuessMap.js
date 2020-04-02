@@ -1,5 +1,4 @@
 import React, { createRef, Component } from 'react';
-import { Button } from 'reactstrap';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
 import { Container, Row, Col } from 'reactstrap';
@@ -10,7 +9,6 @@ import { changeMarkerPosition } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
   return {
-    flags: state.flags,
     map: state.map,
     marker: state.marker
   }
@@ -35,7 +33,7 @@ class GuessMap extends Component<{}, State> {
     if (marker != null) {
       const newPosition = marker.leafletElement.getLatLng();
       // + action
-      changeMarkerPosition(newPosition.lat, newPosition.lng);
+      this.props.changeMarkerPosition(newPosition.lat, newPosition.lng);
     }
   }
 
@@ -51,7 +49,7 @@ class GuessMap extends Component<{}, State> {
     return (
       <Container>
         <Row className="row row-content">
-          <Col xs="12" sm="6">
+          <Col xs="12" sm="7">
             <Map center={position} zoom={this.props.map.zoom}>
               <TileLayer
                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -66,12 +64,11 @@ class GuessMap extends Component<{}, State> {
                   <span onClick={this.toggleDraggable}>
                     {this.props.marker.draggable}
                   </span>
-                  <Button color="primary" size="sm" onClick={this.handleClick}> Click me</Button>
                 </Popup>
               </Marker>
             </Map>
           </Col>
-          <Col xs="12" sm="6">
+          <Col xs="12" sm="5">
             <GuessGame />
           </Col>
         </Row>
