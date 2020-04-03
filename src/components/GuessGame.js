@@ -25,7 +25,8 @@ const mapDispatchToProps = dispatch => ({
 class GuessGame extends Component {
   //handle click
   handleConfirmation = () => {
-    this.props.fetchAddress();
+    //TODO: img names shouldnt hint
+    //this.props.fetchAddress();
     this.props.changeCurrentFlag();
   }
 
@@ -55,7 +56,7 @@ class GuessGame extends Component {
               Correct answers: {this.props.game.correctAnswers} out of {this.props.game.shownFlags.length} attempts.
             </CardText>
             <CardText>Which country uses this flag?</CardText>
-            <Media left>
+            <Media left className="flag-img">
               <Media object src={this.props.flags[this.props.game.currentFlagIndex].path} alt="Image" />   
             </Media>
             <CardBody>

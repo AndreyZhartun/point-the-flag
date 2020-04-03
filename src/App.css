@@ -16,6 +16,10 @@
     min-height: 500px;
 }
 
+.flag-img {
+    min-height: 80px;
+}
+
 .media-object {
     width: 30%;
 }
