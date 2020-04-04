@@ -48,23 +48,59 @@ export const changeCurrentFlag = () => (dispatch, getState) => {
 export const fetchAddress = () => (dispatch, getState) => {
     //var response = fetch(baseUrl + 'lat='+getState().marker.lat+'&lon='+getState().marker.lng);
     //var json = response.json();
+    dispatch(changeRequestStatus(true));
+    setTimeout(
+        dispatch(changeRequestStatus(false)),
+        1000
+    );
     //console.log(json);
-    fetch(baseUrl + 'lat='+getState().marker.lat+'&lon='+getState().marker.lng)
-        .then((response) => {
-            return response.json();
-        })
+    fetch(baseUrl 
+        + 'lat='+getState().marker.lat
+        + '&lon='+getState().marker.lng
+        + '&accept-language=en')
+        .then(response => {
+            if (response.ok){
+                return response.json();
+            }
+            else {
+                var error = new Error('Error ' + response.status + ': ' + response.statusText);
+                error.response = response;
+                throw error;
+            }
+        },
+            error => {
+                throw new Error(error.message);
+            })
         .then((data) => {
+            console.log("local: " + getState().flags[getState().game.currentFlagIndex].code);
+            console.log("got: " + data.address.country_code);
             if (data.address.country_code
                     .localeCompare(getState().flags[getState().game.currentFlagIndex].code) === 0){
                         dispatch(countCorrectAnswer());
             }
             console.log(data.address);
-        });
+            dispatch(changeCurrentFlag());
+        })
+        .catch(error => dispatch(handleError(error.message)));
 }
+
+export const handleError = (errorMessage) => ({
+    type: ActionTypes.HANDLE_ERROR,
+    payload: {
+        errorMessage: errorMessage
+    }
+});
 
 export const countCorrectAnswer = () => ({
     type: ActionTypes.COUNT_CORRECT_ANSWER
 });
+
+export const changeRequestStatus = (sent) => ({
+    type: ActionTypes.CHANGE_REQUEST_STATUS,
+    payload: {
+        status: sent
+    }
+})
 
 export const addFlagToShownFlags = (index) => ({
     type: ActionTypes.ADD_FLAG_TO_SHOWN_FLAGS,

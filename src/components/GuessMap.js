@@ -1,7 +1,6 @@
 import React, { createRef, Component } from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map, TileLayer, Marker } from 'react-leaflet';
 
-import { Container, Row, Col } from 'reactstrap';
 import GuessGame from './GuessGame';
 
 import { connect } from 'react-redux';
@@ -19,13 +18,18 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class GuessMap extends Component<{}, State> {
+
   // $FlowFixMe: ref
   //refmarker = createRef<Marker>()
   refmarker = createRef()
+  refmap = createRef()
 
   toggleDraggable = () => {
     // + action
     //this.setState({ draggable: !this.state.draggable })
+  }
+
+  componentDidMount() {
   }
 
   updatePosition = () => {    
@@ -37,37 +41,33 @@ class GuessMap extends Component<{}, State> {
     }
   }
 
+  componentDidUpdate = () => {
+    if (this.refmap.current) {
+      this.refmap.current.leafletElement.invalidateSize();
+    }
+  }
+
   render() {
-    const position = [this.props.map.center.lat, this.props.map.center.lng]
-    const markerPosition = [this.props.marker.lat, this.props.marker.lng]
+    const position = [this.props.map.center.lat, this.props.map.center.lng];
+    const markerPosition = [this.props.marker.lat, this.props.marker.lng];
 
     return (
-      <Container>
-        <Row className="row row-content">
-          <Col xs="12" sm="7">
-            <Map center={position} zoom={this.props.map.zoom}>
-              <TileLayer
-                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              <Marker
-                draggable={this.props.marker.draggable}
-                onDragend={this.updatePosition}
-                position={markerPosition}
-                ref={this.refmarker}>
-                <Popup minWidth={90}>
-                  <span onClick={this.toggleDraggable}>
-                    {this.props.marker.draggable}
-                  </span>
-                </Popup>
-              </Marker>
-            </Map>
-          </Col>
-          <Col xs="12" sm="5">
-            <GuessGame />
-          </Col>
-        </Row>
-      </Container>
+      <div>
+        
+      <Map center={position} zoom={this.props.map.zoom} ref={this.refmap}>
+        <TileLayer
+          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <Marker
+          draggable={this.props.marker.draggable}
+          onDragend={this.updatePosition}
+          position={markerPosition}
+          ref={this.refmarker}>
+        </Marker>
+      </Map>
+      <GuessGame />
+      </div>
     )
   }
 }

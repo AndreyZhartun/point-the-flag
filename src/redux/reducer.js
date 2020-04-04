@@ -4,15 +4,15 @@ import * as ActionTypes from './ActionTypes';
 export const initialState = {
     flags: FLAGS,
     game: {
-        currentFlagIndex: 1,
+        currentFlagIndex: 0,
         shownFlags: [],
         correctAnswers: 0,
         isInProgress: false
     },
     map: {
         center: {
-            lat: 51.505,
-            lng: -0.09,
+            lat: 40,
+            lng: 12,
         },
         zoom: 3
     },
@@ -20,7 +20,9 @@ export const initialState = {
         lat: 51.505,
         lng: -0.09,
         draggable: true
-    }
+    },
+    requestSent: false,
+    errorMessage: "" 
 };
 
 export const Reducer = (state, action) => {
@@ -72,6 +74,17 @@ export const Reducer = (state, action) => {
                     ...(state.game),
                     isInProgress: action.payload.status
                 }
+            }
+        //fetch request
+        case ActionTypes.CHANGE_REQUEST_STATUS:
+            return {
+                ...state,
+                requestSent: action.payload.status
+            }
+        case ActionTypes.HANDLE_ERROR:
+            return {
+                ...state,
+                errorMessage: action.payload.errorMessage
             }
         default:
             return state;
