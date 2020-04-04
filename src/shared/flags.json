@@ -1,0 +1,786 @@
+{"FLAGS": [
+    {
+        "path": "assets/country_flags/1.png",
+        "code": "ad"
+    },
+    {
+        "path": "assets/country_flags/2.png",
+        "code": "ae"
+    },
+    {
+        "path": "assets/country_flags/3.png",
+        "code": "af"
+    },
+    {
+        "path": "assets/country_fl4s/4.png",
+        "code": "ag"
+    },
+    {
+        "path": "assets/country_flags/5.png",
+        "code": "al"
+    },
+    {
+        "path": "assets/country_flags/6.png",
+        "code": "am"
+    },
+    {
+        "path": "assets/country_flags/7.png",
+        "code": "ao"
+    },
+    {
+        "path": "assets/country_flags/8.png",
+        "code": "ar"
+    },
+    {
+        "path": "assets/country_flags/9.png",
+        "code": "at"
+    },
+    {
+        "path": "assets/country_flags/10.png",
+        "code": "a"
+    },
+    {
+        "path": "assets/country_flags/11.png",
+        "code": "az"
+    },
+    {
+        "path": "assets/country_flags/12.png",
+        "code": "ba"
+    },
+    {
+        "path": "assets/country_flags/13.png",
+        "code": "bb"
+    },
+    {
+        "path": "assets/country_flags/14.png",
+        "code": "bd"
+    },
+    {
+        "path": "assets/country_flags/15.png",
+        "code": "be"
+    },
+    {
+        "path": "assets/country_flags/16.png",
+        "code": "bf"
+    },
+    {
+        "path": "assets/country_flags/17.png",
+        "code": "bg"
+    },
+    {
+        "path": "assets/country_flags/18.png",
+        "code": "bh"
+    },
+    {
+        "path": "assets/country_flags/19.png",
+        "code": "bi"
+    },
+    {
+        "path": "assets/country_flags/20.png",
+        "code": "bj"
+    },
+    {
+        "path": "assets/country_flags/21.png",
+        "code": "bn"
+    },
+    {
+        "path": "assets/country_flags/22.png",
+        "code": "bo"
+    },
+    {
+        "path": "assets/country_flags/23.png",
+        "code": "br"
+    },
+    {
+        "path": "assets/country_flags/24.png",
+        "code": "bs"
+    },
+    {
+        "path": "assets/country_flags/25.png",
+        "code": "bt"
+    },
+    {
+        "path": "assets/country_flags/26.png",
+        "code": "bw"
+    },
+    {
+        "path": "assets/country_flags/27.png",
+        "code": "by"
+    },
+    {
+        "path": "assets/country_flags/28.png",
+        "code": "bz"
+    },
+    {
+        "path": "assets/country_flags/29.png",
+        "code": "ca"
+    },
+    {
+        "path": "assets/country_flags/30.png",
+        "code": "cd"
+    },
+    {
+        "path": "assets/country_flags/31.png",
+        "code": "cf"
+    },
+    {
+        "path": "assets/country_flags/32.png",
+        "code": "cg"
+    },
+    {
+        "path": "assets/country_flags/33.png",
+        "code": "ch"
+    },
+    {
+        "path": "assets/country_flags/34.png",
+        "code": "ci"
+    },
+    {
+        "path": "assets/country_flags/35.png",
+        "code": "cl"
+    },
+    {
+        "path": "assets/country_flags/36.png",
+        "code": "cm"
+    },
+    {
+        "path": "assets/country_flags/37.png",
+        "code": "cn"
+    },
+    {
+        "path": "assets/38untry_flags/38.png",
+        "code": "co"
+    },
+    {
+        "path": "assets/country_flags/39.png",
+        "code": "cr"
+    },
+    {
+        "path": "assets/country_flags/40.png",
+        "code": "c"
+    },
+    {
+        "path": "assets/country_flags/41.png",
+        "code": "cv"
+    },
+    {
+        "path": "assets/country_flags/42.png",
+        "code": "cy"
+    },
+    {
+        "path": "assets/country_flags/43.png",
+        "code": "cz"
+    },
+    {
+        "path": "assets/country_flags/44.png",
+        "code": "de"
+    },
+    {
+        "path": "assets/country_flags/45.png",
+        "code": "dj"
+    },
+    {
+        "path": "assets/country_flags/46.png",
+        "code": "dk"
+    },
+    {
+        "path": "assets/country_flags/47.png",
+        "code": "dm"
+    },
+    {
+        "path": "assets/country_flags/48.png",
+        "code": "do"
+    },
+    {
+        "path": "assets/country_flags/49.png",
+        "code": "dz"
+    },
+    {
+        "path": "assets/country_flags/50.png",
+        "code": "ec"
+    },
+    {
+        "path": "assets/country_flags/51.png",
+        "code": "ee"
+    },
+    {
+        "path": "assets/country_flags/52.png",
+        "code": "eg"
+    },
+    {
+        "path": "assets/country_flags/53.png",
+        "code": "eh"
+    },
+    {
+        "path": "assets/country_flags/54.png",
+        "code": "er"
+    },
+    {
+        "path": "assets/country_flags/55.png",
+        "code": "es"
+    },
+    {
+        "path": "ass56s/country_flags/56.png",
+        "code": "et"
+    },
+    {
+        "path": "assets/country_flags/57.png",
+        "code": "fi"
+    },
+    {
+        "path": "assets/country_flags/58.png",
+        "code": "fj"
+    },
+    {
+        "path": "assets/country_flags/59.png",
+        "code": "fm"
+    },
+    {
+        "path": "assets/country_flags/60.png",
+        "code": "fr"
+    },
+    {
+        "path": "assets/country_flags/61.png",
+        "code": "ga"
+    },
+    {
+        "path": "assets/country_flags/62.png",
+        "code": "gb"
+    },
+    {
+        "path": "assets/country_flags/63.png",
+        "code": "gd"
+    },
+    {
+        "path": "assets/country_flags/64.png",
+        "code": "ge"
+    },
+    {
+        "path": "assets/country_flags/65.png",
+        "code": "gh"
+    },
+    {
+        "path": "assets/country_flags/66.png",
+        "code": "gm"
+    },
+    {
+        "path": "assets/country_flags/67.png",
+        "code": "gn"
+    },
+    {
+        "path": "assets/country_flags/68.png",
+        "code": "gq"
+    },
+    {
+        "path": "assets/country_flags/69.png",
+        "code": "gr"
+    },
+    {
+        "path": "assets/country_flags/70.png",
+        "code": "gt"
+    },
+    {
+        "path": "assets/country_flags/71.png",
+        "code": "gw"
+    },
+    {
+        "path": "assets/country_flags/72.png",
+        "code": "gy"
+    },
+    {
+        "path": "assets/country_flags/73.png",
+        "code": "hn"
+    },
+    {
+        "path": "assets/country_flags/74.png",
+        "code": "hr"
+    },
+    {
+        "path": "assets/country_flags/75.png",
+        "code": "ht"
+    },
+    {
+        "path": "assets/country_flags/76.png",
+        "code": "h"
+    },
+    {
+        "path": "assets/country_flags/77.png",
+        "code": "id"
+    },
+    {
+        "path": "assets/country_flags/78.png",
+        "code": "ie"
+    },
+    {
+        "path": "assets/country_flags/79.png",
+        "code": "il"
+    },
+    {
+        "path": "assets/country_flags/80.png",
+        "code": "in"
+    },
+    {
+        "path": "assets/country_flags/81.png",
+        "code": "iq"
+    },
+    {
+        "path": "assets/country_flags/82.png",
+        "code": "ir"
+    },
+    {
+        "path": "assets/country_flags/83.png",
+        "code": "is"
+    },
+    {
+        "path": "assets/country_flags/84.png",
+        "code": "it"
+    },
+    {
+        "path": "assets/country_flags/85.png",
+        "code": "jm"
+    },
+    {
+        "path": "assets/country_flags/86.png",
+        "code": "jo"
+    },
+    {
+        "path": "assets/country_flags/87.png",
+        "code": "jp"
+    },
+    {
+        "path": "assets/country_flags/88.png",
+        "code": "ke"
+    },
+    {
+        "path": "assets/country_flags/89.png",
+        "code": "kg"
+    },
+    {
+        "path": "assets/country_flags/90.png",
+        "code": "kh"
+    },
+    {
+        "path": "assets/country_flags/91.png",
+        "code": "ki"
+    },
+    {
+        "path": "assets/country_flags/92.png",
+        "code": "km"
+    },
+    {
+        "path": "assets/country_flags/93.png",
+        "code": "kn"
+    },
+    {
+        "path": "assets/country_flags/94.png",
+        "code": "kp"
+    },
+    {
+        "path": "assets/country_flags/95.png",
+        "code": "kr"
+    },
+    {
+        "path": "assets/country_flags/96.png",
+        "code": "ks"
+    },
+    {
+        "path": "assets/country_flags/97.png",
+        "code": "kw"
+    },
+    {
+        "path": "assets/country_flags/98.png",
+        "code": "kz"
+    },
+    {
+        "path": "assets/country_f99gs/99.png",
+        "code": "la"
+    },
+    {
+        "path": "assets/country_flags/100.png",
+        "code": "lb"
+    },
+    {
+        "path": "assets/country_flags/101.png",
+        "code": "lc"
+    },
+    {
+        "path": "assets/country_flags/102.png",
+        "code": "li"
+    },
+    {
+        "path": "assets/country_flags/103.png",
+        "code": "lk"
+    },
+    {
+        "path": "assets/country_flags/104.png",
+        "code": "lr"
+    },
+    {
+        "path": "assets/country_flags/105.png",
+        "code": "ls"
+    },
+    {
+        "path": "assets/country_flags/106.png",
+        "code": "lt"
+    },
+    {
+        "path": "assets/country_flags/107.png",
+        "code": "l"
+    },
+    {
+        "path": "assets/country_flags/108.png",
+        "code": "lv"
+    },
+    {
+        "path": "assets/country_flags/109.png",
+        "code": "ly"
+    },
+    {
+        "path": "assets/country_flags/110.png",
+        "code": "ma"
+    },
+    {
+        "path": "assets/country_flags/111.png",
+        "code": "mc"
+    },
+    {
+        "path": "assets/country_flags/112.png",
+        "code": "md"
+    },
+    {
+        "path": "assets/country_flags/113.png",
+        "code": "me"
+    },
+    {
+        "path": "assets/country_flags/114.png",
+        "code": "mg"
+    },
+    {
+        "path": "assets/country_flags/115.png",
+        "code": "mh"
+    },
+    {
+        "path": "assets/country_flags/116.png",
+        "code": "mk"
+    },
+    {
+        "path": "assets/country_flags/117.png",
+        "code": "ml"
+    },
+    {
+        "path": "assets/country_flags/118.png",
+        "code": "mm"
+    },
+    {
+        "path": "assets/country_flags/119.png",
+        "code": "mn"
+    },
+    {
+        "path": "assets/country_flags/120.png",
+        "code": "mr"
+    },
+    {
+        "path": "assets/country_flags/121.png",
+        "code": "mt"
+    },
+    {
+        "path": "assets/country_flags/122.png",
+        "code": "m"
+    },
+    {
+        "path": "assets/country_flags/123.png",
+        "code": "mv"
+    },
+    {
+        "path": "assets/country_flags/124.png",
+        "code": "mw"
+    },
+    {
+        "path": "assets/country_flags/125.png",
+        "code": "mx"
+    },
+    {
+        "path": "assets/country_flags/126.png",
+        "code": "my"
+    },
+    {
+        "path": "assets/country_flags/127.png",
+        "code": "mz"
+    },
+    {
+        "path": "assets/country_flags/128.png",
+        "code": "na"
+    },
+    {
+        "path": "assets/country_flags/129.png",
+        "code": "ne"
+    },
+    {
+        "path": "assets/country_flags/130.p130",
+        "code": "ng"
+    },
+    {
+        "path": "assets/country_flags/131.png",
+        "code": "ni"
+    },
+    {
+        "path": "assets/country_flags/132.png",
+        "code": "nl"
+    },
+    {
+        "path": "assets/country_flags/133.png",
+        "code": "no"
+    },
+    {
+        "path": "assets/country_flags/134.png",
+        "code": "np"
+    },
+    {
+        "path": "assets/country_flags/135.png",
+        "code": "nr"
+    },
+    {
+        "path": "assets/country_flags/136.png",
+        "code": "nz"
+    },
+    {
+        "path": "assets/country_flags/137.png",
+        "code": "om"
+    },
+    {
+        "path": "assets/country_flags/138.png",
+        "code": "pa"
+    },
+    {
+        "path": "assets/country_flags/139.png",
+        "code": "pe"
+    },
+    {
+        "path": "assets/country_flags/140.png",
+        "code": "pg"
+    },
+    {
+        "path": "assets/country_flags/141.png",
+        "code": "ph"
+    },
+    {
+        "path": "assets/country_flags/142.png",
+        "code": "pk"
+    },
+    {
+        "path": "assets/country_flags/143.png",
+        "code": "pl"
+    },
+    {
+        "path": "assets/country_flags/144.png",
+        "code": "pt"
+    },
+    {
+        "path": "assets/country_flags/145.png",
+        "code": "pw"
+    },
+    {
+        "path": "assets/country_flags/146.png",
+        "code": "py"
+    },
+    {
+        "path": "assets/country_flags/147.png",
+        "code": "qa"
+    },
+    {
+        "path": "assets/country_flags/148.png",
+        "code": "ro"
+    },
+    {
+        "path": "assets/country_flags/149.png",
+        "code": "rs"
+    },
+    {
+        "path": "assets/country_flags/150.png",
+        "code": "r"
+    },
+    {
+        "path": "assets/country_flags/151.png",
+        "code": "rw"
+    },
+    {
+        "path": "assets/country_flags/152.png",
+        "code": "sa"
+    },
+    {
+        "path": "assets/country_flags/153.png",
+        "code": "sb"
+    },
+    {
+        "path": "assets/country_flags/154.png",
+        "code": "sc"
+    },
+    {
+        "path": "assets/country_flags/155.png",
+        "code": "sd"
+    },
+    {
+        "path": "as156ts/country_flags/156.png",
+        "code": "se"
+    },
+    {
+        "path": "assets/country_flags/157.png",
+        "code": "sg"
+    },
+    {
+        "path": "assets/country_flags/158.png",
+        "code": "si"
+    },
+    {
+        "path": "assets/country_flags/159.png",
+        "code": "sk"
+    },
+    {
+        "path": "assets/country_flags/160.png",
+        "code": "sl"
+    },
+    {
+        "path": "assets/country_flags/161.png",
+        "code": "sm"
+    },
+    {
+        "path": "assets/country_flags/162.png",
+        "code": "sn"
+    },
+    {
+        "path": "assets/country_flags/163.png",
+        "code": "so"
+    },
+    {
+        "path": "assets/country_flags/164.png",
+        "code": "sr"
+    },
+    {
+        "path": "assets/country_flags/165.png",
+        "code": "st"
+    },
+    {
+        "path": "assets/country_flags/166.png",
+        "code": "sv"
+    },
+    {
+        "path": "assets/country_flags/167.png",
+        "code": "sy"
+    },
+    {
+        "path": "assets/country_flags/168.png",
+        "code": "sz"
+    },
+    {
+        "path": "assets/country_flags/169.png",
+        "code": "td"
+    },
+    {
+        "path": "assets/country_flags/170.png",
+        "code": "tg"
+    },
+    {
+        "path": "assets/country_flags/171.png",
+        "code": "th"
+    },
+    {
+        "path": "assets/country_flags/172.png",
+        "code": "tj"
+    },
+    {
+        "path": "assets/country_flags/173.png",
+        "code": "tl"
+    },
+    {
+        "path": "assets/country_flags/174.png",
+        "code": "tm"
+    },
+    {
+        "path": "assets/country_flags/175.png",
+        "code": "tn"
+    },
+    {
+        "path": "assets/country_flags/176.png",
+        "code": "to"
+    },
+    {
+        "path": "assets/coun177y_flags/177.png",
+        "code": "tr"
+    },
+    {
+        "path": "assets/country_flags/178.png",
+        "code": "tt"
+    },
+    {
+        "path": "assets/country_flags/179.png",
+        "code": "tv"
+    },
+    {
+        "path": "assets/country_flags/180.png",
+        "code": "tw"
+    },
+    {
+        "path": "assets/country_flags/181.png",
+        "code": "tz"
+    },
+    {
+        "path": "assets/country_flags/182.png",
+        "code": "ua"
+    },
+    {
+        "path": "assets/country_flags/183.png",
+        "code": "ug"
+    },
+    {
+        "path": "assets/country_flags/184.png",
+        "code": "us"
+    },
+    {
+        "path": "assets/country_flags/185.png",
+        "code": "uy"
+    },
+    {
+        "path": "assets/country_flags/186.png",
+        "code": "uz"
+    },
+    {
+        "path": "assets/country_flags/187.png",
+        "code": "va"
+    },
+    {
+        "path": "assets/country_flags/188.png",
+        "code": "vc"
+    },
+    {
+        "path": "assets/country_flags/189.png",
+        "code": "ve"
+    },
+    {
+        "path": "assets/country_flags/190.png",
+        "code": "vn"
+    },
+    {
+        "path": "assets/country_flags/191.png",
+        "code": "v"
+    },
+    {
+        "path": "assets/country_flags/192.png",
+        "code": "ws"
+    },
+    {
+        "path": "assets/country_flags/193.png",
+        "code": "ye"
+    },
+    {
+        "path": "assets/country_flags/194.png",
+        "code": "za"
+    },
+    {
+        "path": "assets/country_flags/195.png",
+        "code": "zm"
+    },
+    {
+        "path": "assets/country_flags/196.png",
+        "code": "zw"
+    }
+]}

@@ -49,8 +49,9 @@ export const fetchAddress = () => (dispatch, getState) => {
     //var response = fetch(baseUrl + 'lat='+getState().marker.lat+'&lon='+getState().marker.lng);
     //var json = response.json();
     dispatch(changeRequestStatus(true));
-    setTimeout(
-        dispatch(changeRequestStatus(false)),
+    setTimeout(() => {
+            dispatch(changeRequestStatus(false))
+        },
         1000
     );
     //console.log(json);

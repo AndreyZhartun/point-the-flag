@@ -1,4 +1,5 @@
-import { FLAGS } from '../shared/flags';
+import { FLAGS } from '../shared/flags.json';
+//TODO: make flags json
 import * as ActionTypes from './ActionTypes';
 
 export const initialState = {
