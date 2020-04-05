@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/point-the-flag/static/css/main.b16312bc.chunk.css",
+    "main.js": "/point-the-flag/static/js/main.2c23b095.chunk.js",
+    "main.js.map": "/point-the-flag/static/js/main.2c23b095.chunk.js.map",
+    "runtime-main.js": "/point-the-flag/static/js/runtime-main.8c5c7dd0.js",
+    "runtime-main.js.map": "/point-the-flag/static/js/runtime-main.8c5c7dd0.js.map",
+    "static/css/2.de424728.chunk.css": "/point-the-flag/static/css/2.de424728.chunk.css",
+    "static/js/2.e17d5586.chunk.js": "/point-the-flag/static/js/2.e17d5586.chunk.js",
+    "static/js/2.e17d5586.chunk.js.map": "/point-the-flag/static/js/2.e17d5586.chunk.js.map",
+    "index.html": "/point-the-flag/index.html",
+    "precache-manifest.10e968f7163322ba2538a21b2ad1438c.js": "/point-the-flag/precache-manifest.10e968f7163322ba2538a21b2ad1438c.js",
+    "service-worker.js": "/point-the-flag/service-worker.js",
+    "static/css/2.de424728.chunk.css.map": "/point-the-flag/static/css/2.de424728.chunk.css.map",
+    "static/css/main.b16312bc.chunk.css.map": "/point-the-flag/static/css/main.b16312bc.chunk.css.map",
+    "static/js/2.e17d5586.chunk.js.LICENSE.txt": "/point-the-flag/static/js/2.e17d5586.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8c5c7dd0.js",
+    "static/css/2.de424728.chunk.css",
+    "static/js/2.e17d5586.chunk.js",
+    "static/css/main.b16312bc.chunk.css",
+    "static/js/main.2c23b095.chunk.js"
+  ]
+}
