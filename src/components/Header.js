@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarText, NavItem, NavLink, Nav, NavbarToggler, Collapse } from 'reactstrap';
+import { Navbar, NavbarText, NavItem, NavLink, Nav } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFlag, faQuestion, faAddressCard, faCode } from '@fortawesome/free-solid-svg-icons';
 
-export default class Header extends Component {
+class Header extends Component {
+  
   render() {
     return(
     <React.Fragment>
@@ -13,19 +14,19 @@ export default class Header extends Component {
             <NavLink style={{padding:"0.5rem"}}>
               <FontAwesomeIcon icon={faFlag} />
               <FontAwesomeIcon icon={faQuestion} />
-              {" Guess the country by its flag"}
+              {" Укажите страну по ее флагу"}
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink style={{padding:"0.5rem"}} href="#">
+            <NavLink style={{padding:"0.5rem"}} href="https://github.com/AndreyZhartun/point-the-flag">
               <FontAwesomeIcon icon={faCode} />
               {" Github "}
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#">
+            <NavLink href="/">
               <FontAwesomeIcon icon={faAddressCard} />
-              {" About Me "}
+              {" Про меня"}
             </NavLink>
           </NavItem>
         </Nav>
@@ -35,3 +36,5 @@ export default class Header extends Component {
     );
   }
 }
+
+export default Header;

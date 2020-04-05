@@ -51,28 +51,28 @@ class GuessGame extends Component {
         <Container>
           <Row>
             <Col xs="12" sm="4">
-            <img src={this.props.flags[this.props.game.currentFlagIndex].path} className="flag-img" alt="Current Flag"/>
+            <img src={this.props.flags[this.props.game.currentFlagIndex].path} className="flag-img" alt="[Выбранный флаг]"/>
             </Col>
             <Col>
-              <p className="lead">Flag #{this.props.game.shownFlags.length + 1} 
+              <p className="lead">Флаг #{this.props.game.shownFlags.length + 1} 
               </p>
               <p className="lead">
-              Correct answers: {this.props.game.correctAnswers}
+              Правильных ответов: {this.props.game.correctAnswers}
               </p>
             </Col>
           </Row>
         </Container>
-        <p>Drag the <FontAwesomeIcon icon={faMapMarkerAlt} /> marker on the map to point the country</p>
+        <p>Потяните <FontAwesomeIcon icon={faMapMarkerAlt} /> маркер на карте, чтобы указать страну</p>
         <hr className="my-2" />
         <p>
-          Current <FontAwesomeIcon icon={faMapMarkerAlt} /> coordinates: 
+          Текущие координаты <FontAwesomeIcon icon={faMapMarkerAlt} />: 
           {this.props.marker ? 
             "  " + this.props.marker.lat.toFixed(2) +", "+ this.props.marker.lng.toFixed(2) :
-            "No marker found"}
+            "Маркер не найден"}
         </p>
         <p className="lead">
         <Button color="primary" disabled={this.props.requestSent} onClick={this.handleConfirmation}>
-          Confirm selected coordinates
+          Подтвердить выбранные координаты
           </Button>
         </p>
       </Jumbotron>

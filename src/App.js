@@ -3,7 +3,6 @@ import './App.css';
 
 import GuessMap from './components/GuessMap';
 import Header from './components/Header';
-//import GuessMap from './components/Example'
 
 import { Provider } from 'react-redux';
 import { ConfigureStore } from './redux/configureStore';
