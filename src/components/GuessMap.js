@@ -19,7 +19,6 @@ const mapDispatchToProps = dispatch => ({
 
 class GuessMap extends Component<{}, State> {
 
-  // $FlowFixMe: ref
   //refmarker = createRef<Marker>()
   refmarker = createRef()
   refmap = createRef()
@@ -36,12 +35,13 @@ class GuessMap extends Component<{}, State> {
     const marker = this.refmarker.current;
     if (marker != null) {
       const newPosition = marker.leafletElement.getLatLng();
-      // + action
+      // послать action "записать новую позицию"
       this.props.changeMarkerPosition(newPosition.lat, newPosition.lng);
     }
   }
 
   componentDidUpdate = () => {
+    //фикс странного бага непрогрузки карты, видимо вызываемого конфликтом leaflet и create-react-app
     if (this.refmap.current) {
       this.refmap.current.leafletElement.invalidateSize();
     }
@@ -53,7 +53,6 @@ class GuessMap extends Component<{}, State> {
 
     return (
       <div>
-        
       <Map center={position} zoom={this.props.map.zoom} ref={this.refmap}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

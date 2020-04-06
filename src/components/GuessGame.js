@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-import { Container, Row, Col, Button } from 'reactstrap';
-import { Jumbotron } from 'reactstrap';
+import { Container, Row, Col, Jumbotron, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,6 +12,7 @@ const mapStateToProps = state => {
     flags: state.flags,
     game: state.game,
     requestSent: state.requestSent,
+    prevCountryMessage: state.prevCountryMessage,
     marker: state.marker
   }
 }
@@ -26,28 +26,19 @@ const mapDispatchToProps = dispatch => ({
 class GuessGame extends Component {
   constructor(props) {
     super(props);
+    //случайно определить первый флаг
     if (!this.props.game.isInProgress){
       this.props.setRandomFirstIndex();
     }
   }
-  //handle click
+  //обработка клика на кнопку
   handleConfirmation = () => {
-    //TODO: img names shouldnt hint
     this.props.fetchAddress();
-    //this.props.changeCurrentFlag();
-  }
-
-  handleStart = () => {
-    //component did mount?
-    /*if (!this.props.game.isInProgress){
-      this.props.setRandomFirstIndex();
-    }*/
-    //<img src={this.props.flags[this.props.game.currentFlagIndex].path} className="flag-img" alt="Image"/>
   }
 
   render() {
     return (
-      <Jumbotron className="position-fixed" style={{padding:"1rem"}}>
+      <Jumbotron className="position-fixed text-center" style={{padding:"1rem"}}>
         <Container>
           <Row>
             <Col xs="12" sm="4">
@@ -70,41 +61,23 @@ class GuessGame extends Component {
             "  " + this.props.marker.lat.toFixed(2) +", "+ this.props.marker.lng.toFixed(2) :
             "Маркер не найден"}
         </p>
-        <p className="lead">
-        <Button color="primary" disabled={this.props.requestSent} onClick={this.handleConfirmation}>
-          Подтвердить выбранные координаты
-          </Button>
+        <p hidden={!this.props.prevCountryMessage}>
+          Предыдущий флаг: 
+          <img src={this.props.flags[this.props.game.shownFlags[-1]] ? 
+                    this.props.flags[this.props.game.shownFlags[-1]].path
+                    : this.props.flags[this.props.game.currentFlagIndex].path}
+              className="flag-img-mini" alt="[Предыдущий флаг]"/>
+          {" " + this.props.prevCountryMessage}
         </p>
+        <Button 
+          color="primary" 
+          disabled={this.props.requestSent || !this.props.game.isInProgress} 
+          onClick={this.handleConfirmation}>
+            Подтвердить выбранные координаты
+        </Button>
       </Jumbotron>
     )
   }
-
-  /*render() {
-    return (
-      <Card className="text-center">
-      <CardHeader>Drag the marker on the map to point the country</CardHeader>
-      <CardBody>        
-        <Media body>
-          <Media heading>
-            Flag #{this.props.game.shownFlags.length + 1} 
-            {" "}(correct answers: {this.props.game.correctAnswers})
-          </Media>
-        </Media>
-        <Media left className="flag-img">
-          <Media object src={this.props.flags[this.props.game.currentFlagIndex].path} alt="Image" />   
-        </Media>
-        <Button color="primary" onClick={this.handleConfirmation}>
-          {" Select coordinates: "}
-          <FontAwesomeIcon icon={faMapMarkerAlt} />
-          {this.props.marker ? 
-            "  " + this.props.marker.lat.toFixed(2) +", "+ this.props.marker.lng.toFixed(2) :
-            "No marker found"}
-        </Button>
-      </CardBody>
-      
-      </Card>
-    )
-  }*/
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GuessGame);

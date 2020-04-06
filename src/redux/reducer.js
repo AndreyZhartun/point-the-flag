@@ -1,5 +1,4 @@
-import { FLAGS } from '../shared/flags.json';
-//TODO: make flags json
+import { FLAGS } from '../shared/flags.json';   //загрузка кодов и путей к флагам
 import * as ActionTypes from './ActionTypes';
 
 export const initialState = {
@@ -23,12 +22,14 @@ export const initialState = {
         draggable: true
     },
     requestSent: false,
-    errorMessage: "" 
+    errorMessage: "",
+    prevCountryMessage: ""
+
 };
 
 export const Reducer = (state, action) => {
     switch (action.type) {
-        //Map
+        //записать новую позицию маркера
         case ActionTypes.CHANGE_MARKER_POSITION:
             const newMarker = {
                 ...(state.marker),
@@ -39,7 +40,7 @@ export const Reducer = (state, action) => {
                 ...state,
                 marker: newMarker
             };
-        //Game
+        //запомнить, что текущий флаг показан
         case ActionTypes.ADD_FLAG_TO_SHOWN_FLAGS:
             var newArray = state.game.shownFlags.concat(action.payload.index);
             const gameWithNewShownFlags = {
@@ -50,6 +51,7 @@ export const Reducer = (state, action) => {
                 ...state,
                 game: gameWithNewShownFlags
             };
+        //изменить показываемый флаг
         case ActionTypes.CHANGE_CURRENT_FLAG_INDEX:
             const gameWithNewIndex = {
                 ...(state.game),
@@ -59,6 +61,7 @@ export const Reducer = (state, action) => {
                 ...state,
                 game: gameWithNewIndex
             };
+        //засчитать правильный ответ
         case ActionTypes.COUNT_CORRECT_ANSWER:
             const newCorrectAnswers = state.game.correctAnswers + 1;
             return {
@@ -68,6 +71,7 @@ export const Reducer = (state, action) => {
                     correctAnswers: newCorrectAnswers
                 }
             };
+        //изменить стату игры (bool вПрогрессе: да/нет)
         case ActionTypes.CHANGE_GAME_STATUS:
             return {
                 ...state,
@@ -76,12 +80,19 @@ export const Reducer = (state, action) => {
                     isInProgress: action.payload.status
                 }
             }
-        //fetch request
+        //показать флаг какой страны был показан до этого 
+        case ActionTypes.CHANGE_PREV_COUNTRY_MESSAGE:
+            return {
+                ...state,
+                prevCountryMessage: action.payload.country
+            }
+        //изменить статус запроса
         case ActionTypes.CHANGE_REQUEST_STATUS:
             return {
                 ...state,
                 requestSent: action.payload.status
             }
+        //записать новое сообщение ошибки
         case ActionTypes.HANDLE_ERROR:
             return {
                 ...state,

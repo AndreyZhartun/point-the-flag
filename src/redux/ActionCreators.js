@@ -10,10 +10,11 @@ export const changeMarkerPosition = (lat, lng) => ({
 });
 
 export const setRandomFirstIndex = () => (dispatch, getState) => {
-    //TODO: initialize new index after Start Game
+    //определить первый случайный индекс флага
     const randomFirstIndex = Math.floor(Math.random() * getState().flags.length);
 
     dispatch(changeCurrentFlagIndex(randomFirstIndex));
+    //записать, что игра в прогрессе
     dispatch(changeGameStatus(true));
 }
 
@@ -25,40 +26,40 @@ export const changeGameStatus = (status) => ({
 });
 
 export const changeCurrentFlag = () => (dispatch, getState) => {
+    //записать текущий индекс
     const currentIndex = getState().game.currentFlagIndex;
 
-    //TODO: prevent adding duplicates
+    //добавить текущий флаг в просмотренные
     dispatch(addFlagToShownFlags(currentIndex));
 
-    //array substraction
+    //вычесть из всех флагов уже просмотренные, чтобы получить массив из непоказанных флагов
     const possibleNewIndexes = [...Array(getState().flags.length).keys()]
         .filter(index => !getState().game.shownFlags.includes(index));
 
-    //check if there is unshown flags
+    //если непоказанных флагов нет, то конец игры
     if (possibleNewIndexes.length === 0){
         return;
     }
 
-    //finding new index
+    //выбрать случайный индекс из не показанных раньше
     const newIndex = possibleNewIndexes[Math.floor(Math.random() * possibleNewIndexes.length)]
 
     dispatch(changeCurrentFlagIndex(newIndex));
 }
 
 export const fetchAddress = () => (dispatch, getState) => {
-    //var response = fetch(baseUrl + 'lat='+getState().marker.lat+'&lon='+getState().marker.lng);
-    //var json = response.json();
+    //задержка в 1000 мс, используемый API не рекомендует посылать запросы чаще чем через 1 сек.
     dispatch(changeRequestStatus(true));
     setTimeout(() => {
             dispatch(changeRequestStatus(false))
         },
         1000
     );
-    //console.log(json);
+    //запрос reverse к Nominatim API
     fetch(baseUrl 
         + 'lat='+getState().marker.lat
         + '&lon='+getState().marker.lng
-        + '&accept-language=en')
+        + '&accept-language=ru')
         .then(response => {
             if (response.ok){
                 return response.json();
@@ -73,13 +74,14 @@ export const fetchAddress = () => (dispatch, getState) => {
                 throw new Error(error.message);
             })
         .then((data) => {
-            console.log("local: " + getState().flags[getState().game.currentFlagIndex].code);
-            console.log("got: " + data.address.country_code);
+            //записать страну, чтобы можно было узнать правильный ответ
+            dispatch(changePrevCountryMessage(getState().flags[getState().game.currentFlagIndex].country));
+            //если коды стран совпали, то ответ верный
             if (data.address.country_code
                     .localeCompare(getState().flags[getState().game.currentFlagIndex].code) === 0){
                         dispatch(countCorrectAnswer());
             }
-            console.log(data.address);
+            //в любом случае поменять флаг
             dispatch(changeCurrentFlag());
         })
         .catch(error => dispatch(handleError(error.message)));
@@ -89,6 +91,13 @@ export const handleError = (errorMessage) => ({
     type: ActionTypes.HANDLE_ERROR,
     payload: {
         errorMessage: errorMessage
+    }
+});
+
+export const changePrevCountryMessage = (country) => ({
+    type: ActionTypes.CHANGE_PREV_COUNTRY_MESSAGE,
+    payload: {
+        country: country
     }
 });
 
