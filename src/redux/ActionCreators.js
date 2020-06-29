@@ -26,25 +26,7 @@ export const changeGameStatus = (status) => ({
 });
 
 export const changeCurrentFlag = () => (dispatch, getState) => {
-    //записать текущий индекс
-    const currentIndex = getState().game.currentFlagIndex;
-
-    //добавить текущий флаг в просмотренные
-    dispatch(addFlagToShownFlags(currentIndex));
-
-    //вычесть из всех флагов уже просмотренные, чтобы получить массив из непоказанных флагов
-    const possibleNewIndexes = [...Array(getState().flags.length).keys()]
-        .filter(index => !getState().game.shownFlags.includes(index));
-
-    //если непоказанных флагов нет, то конец игры
-    if (possibleNewIndexes.length === 0){
-        return;
-    }
-
-    //выбрать случайный индекс из не показанных раньше
-    const newIndex = possibleNewIndexes[Math.floor(Math.random() * possibleNewIndexes.length)]
-
-    dispatch(changeCurrentFlagIndex(newIndex));
+    
 }
 
 export const fetchAddress = () => (dispatch, getState) => {
@@ -55,11 +37,15 @@ export const fetchAddress = () => (dispatch, getState) => {
         },
         1000
     );
+    //запомнить текущий индекс и запрос
+    const currentIndex = getState().game.currentFlagIndex;
+    const query = baseUrl 
+        + 'lat='+getState().marker.lat 
+        + '&lon='+getState().marker.lng 
+        + '&accept-language=ru';
     //запрос reverse к Nominatim API
-    fetch(baseUrl 
-        + 'lat='+getState().marker.lat
-        + '&lon='+getState().marker.lng
-        + '&accept-language=ru')
+
+    return fetch(query)
         .then(response => {
             if (response.ok){
                 return response.json();
@@ -68,21 +54,37 @@ export const fetchAddress = () => (dispatch, getState) => {
                 var error = new Error('Error ' + response.status + ': ' + response.statusText);
                 error.response = response;
                 throw error;
-            }
-        },
+            }},
             error => {
                 throw new Error(error.message);
             })
         .then((data) => {
             //записать страну, чтобы можно было узнать правильный ответ
-            dispatch(changePrevCountryMessage(getState().flags[getState().game.currentFlagIndex].country));
+            dispatch(changePrevCountryMessage(getState().flags[currentIndex].country));
             //если коды стран совпали, то ответ верный
             if (data.address.country_code
-                    .localeCompare(getState().flags[getState().game.currentFlagIndex].code) === 0){
+                    .localeCompare(getState().flags[currentIndex].code) === 0){
                         dispatch(countCorrectAnswer());
             }
             //в любом случае поменять флаг
-            dispatch(changeCurrentFlag());
+            //dispatch(changeCurrentFlag());
+            
+            //добавить текущий флаг в просмотренные
+            dispatch(addFlagToShownFlags(currentIndex));
+
+            //вычесть из всех флагов уже просмотренные, чтобы получить массив из непоказанных флагов
+            const possibleNewIndexes = [...Array(getState().flags.length).keys()]
+                .filter(index => !getState().game.shownFlags.includes(index));
+
+            //если непоказанных флагов нет, то конец игры
+            if (possibleNewIndexes.length === 0){
+                return;
+            }
+
+            //выбрать случайный индекс из не показанных раньше
+            const newIndex = possibleNewIndexes[Math.floor(Math.random() * possibleNewIndexes.length)]
+
+            dispatch(changeCurrentFlagIndex(newIndex));
         })
         .catch(error => dispatch(handleError(error.message)));
 }

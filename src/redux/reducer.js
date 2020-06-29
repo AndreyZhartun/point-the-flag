@@ -24,7 +24,6 @@ export const initialState = {
     requestSent: false,
     errorMessage: "",
     prevCountryMessage: ""
-
 };
 
 export const Reducer = (state, action) => {
