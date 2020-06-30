@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0e401ddcd7a5abccd0013661eae70c27",
+    "revision": "08576094aef2b5c6e48ee9c1d8b2a154",
     "url": "/point-the-flag/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/point-the-flag/static/css/2.de424728.chunk.css"
   },
   {
-    "revision": "77e55daead442da274b3",
+    "revision": "f4cef4e1083b2736da7d",
     "url": "/point-the-flag/static/css/main.70504758.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/point-the-flag/static/js/2.381ee69f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "77e55daead442da274b3",
-    "url": "/point-the-flag/static/js/main.9819809e.chunk.js"
+    "revision": "f4cef4e1083b2736da7d",
+    "url": "/point-the-flag/static/js/main.effcb4b9.chunk.js"
   },
   {
     "revision": "bc89e5c82b0c1a6081d9",
