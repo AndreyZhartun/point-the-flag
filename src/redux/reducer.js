@@ -18,8 +18,7 @@ export const initialState = {
     },
     marker: {
         lat: 51.505,
-        lng: -0.09,
-        draggable: true
+        lng: -0.09
     },
     requestSent: false,
     errorMessage: "",

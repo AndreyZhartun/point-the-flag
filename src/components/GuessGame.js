@@ -45,7 +45,8 @@ class GuessGame extends Component {
               <img src={this.props.flags[this.props.game.currentFlagIndex].path} className="flag-img" alt="[Выбранный флаг]" />
             </Col>
             <Col>
-              <p className="lead">Флаг #{this.props.game.shownFlags.length + 1}
+              <p className="lead">
+                Флаг #{this.props.game.shownFlags.length + 1}
               </p>
               <p className="lead">
                 Правильных ответов: {this.props.game.correctAnswers}
@@ -64,7 +65,7 @@ class GuessGame extends Component {
         <p hidden={!this.props.prevCountryMessage}>
           {"Предыдущий флаг: "}
           <img src={this.props.game.shownFlags.length > 0 ?
-            this.props.flags[this.props.game.shownFlags[this.props.game.shownFlags.length-1]].path
+            this.props.flags[this.props.game.shownFlags[this.props.game.shownFlags.length - 1]].path
             : 'temp_path'}
             className="flag-img-mini" alt="[Флаг]" />
           {" " + this.props.prevCountryMessage}

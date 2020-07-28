@@ -19,19 +19,10 @@ const mapDispatchToProps = dispatch => ({
 
 class GuessMap extends Component<{}, State> {
 
-  //refmarker = createRef<Marker>()
   refmarker = createRef()
   refmap = createRef()
 
-  toggleDraggable = () => {
-    // + action
-    //this.setState({ draggable: !this.state.draggable })
-  }
-
-  componentDidMount() {
-  }
-
-  updatePosition = () => {    
+  updatePosition = () => {
     const marker = this.refmarker.current;
     if (marker != null) {
       const newPosition = marker.leafletElement.getLatLng();
@@ -53,19 +44,19 @@ class GuessMap extends Component<{}, State> {
 
     return (
       <div>
-      <Map center={position} zoom={this.props.map.zoom} ref={this.refmap}>
-        <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker
-          draggable={this.props.marker.draggable}
-          onDragend={this.updatePosition}
-          position={markerPosition}
-          ref={this.refmarker}>
-        </Marker>
-      </Map>
-      <GuessGame />
+        <Map center={position} zoom={this.props.map.zoom} ref={this.refmap}>
+          <TileLayer
+            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker
+            draggable={true}
+            onDragend={this.updatePosition}
+            position={markerPosition}
+            ref={this.refmarker}>
+          </Marker>
+        </Map>
+        <GuessGame />
       </div>
     )
   }
