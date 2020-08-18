@@ -29,47 +29,57 @@ export const Reducer = (state, action) => {
     switch (action.type) {
         //записать новую позицию маркера
         case ActionTypes.CHANGE_MARKER_POSITION:
-            const newMarker = {
+            /*const newMarker = {
                 ...(state.marker),
                 lat: action.payload.lat,
                 lng: action.payload.lng
-            };
+            };*/
             return {
                 ...state,
-                marker: newMarker
+                marker: {
+                    ...(state.marker),
+                    lat: action.payload.lat,
+                    lng: action.payload.lng
+                }
             };
         //запомнить, что текущий флаг показан
         case ActionTypes.ADD_FLAG_TO_SHOWN_FLAGS:
-            var newArray = state.game.shownFlags.concat(action.payload.index);
-            const gameWithNewShownFlags = {
+            //var newArray = state.game.shownFlags.concat(action.payload.index);
+            /*const gameWithNewShownFlags = {
                 ...(state.game),
-                shownFlags: newArray
-            }
-            return {
-                ...state,
-                game: gameWithNewShownFlags
-            };
-        //изменить показываемый флаг
-        case ActionTypes.CHANGE_CURRENT_FLAG_INDEX:
-            const gameWithNewIndex = {
-                ...(state.game),
-                currentFlagIndex: action.payload.index
-            };
-            return {
-                ...state,
-                game: gameWithNewIndex
-            };
-        //засчитать правильный ответ
-        case ActionTypes.COUNT_CORRECT_ANSWER:
-            const newCorrectAnswers = state.game.correctAnswers + 1;
+                shownFlags: state.game.shownFlags.concat(action.payload.index)
+            }*/
             return {
                 ...state,
                 game: {
                     ...(state.game),
-                    correctAnswers: newCorrectAnswers
+                    shownFlags: state.game.shownFlags.concat(action.payload.index)
                 }
             };
-        //изменить стату игры (bool вПрогрессе: да/нет)
+        //изменить показываемый флаг
+        case ActionTypes.CHANGE_CURRENT_FLAG_INDEX:
+            /*const gameWithNewIndex = {
+                ...(state.game),
+                currentFlagIndex: action.payload.index
+            };*/
+            return {
+                ...state,
+                game: {
+                    ...(state.game),
+                    currentFlagIndex: action.payload.index
+                }
+            };
+        //засчитать правильный ответ
+        case ActionTypes.COUNT_CORRECT_ANSWER:
+            //const newCorrectAnswers = state.game.correctAnswers + 1;
+            return {
+                ...state,
+                game: {
+                    ...(state.game),
+                    correctAnswers: state.game.correctAnswers + 1
+                }
+            };
+        //изменить статус игры (bool вПрогрессе: да/нет)
         case ActionTypes.CHANGE_GAME_STATUS:
             return {
                 ...state,
