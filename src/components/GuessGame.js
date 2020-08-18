@@ -45,17 +45,17 @@ class GuessGame extends Component {
             <img src={this.props.flags[this.props.game.currentFlagIndex].path} className="flag-img" alt="[Текущий флаг]" />
           </div>
           <div className="col-lead">
-            <p className="lead">
+            <p>
               Флаг #{this.props.game.shownFlags.length + 1}
             </p>
-            <p className="lead">
+            <p>
               Правильных ответов: {this.props.game.correctAnswers}
             </p>
           </div>
         </div>
 
         <p>Потяните <FontAwesomeIcon icon={faMapMarkerAlt} /> маркер на карте, чтобы указать страну</p>
-        <hr className="my-2" />
+        <hr />
         <p>
           Текущие координаты <FontAwesomeIcon icon={faMapMarkerAlt} />:
           {this.props.marker ?

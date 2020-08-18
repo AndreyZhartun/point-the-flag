@@ -2,6 +2,7 @@ import React, { createRef, Component } from 'react';
 import { Map, TileLayer, Marker } from 'react-leaflet';
 
 import GuessGame from './GuessGame';
+import '../styles/GuessMap.css';
 
 import { connect } from 'react-redux';
 import { changeMarkerPosition } from '../redux/ActionCreators';

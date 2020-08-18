@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 
 import GuessMap from './components/GuessMap';
 import Header from './components/Header';
@@ -9,7 +8,7 @@ import { ConfigureStore } from './redux/configureStore';
 
 const store = ConfigureStore();
 
-function App(){
+function App() {
   return (
     <Provider store={store}>
       <Header />
