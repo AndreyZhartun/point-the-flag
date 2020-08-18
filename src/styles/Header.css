@@ -13,7 +13,7 @@ nav {
     padding: 0.5rem 1rem;
     /**/
     background-color: #46433a;
-    min-height: 5vh;
+    /*min-height: 5vh;*/
 }
 
 nav ul {
@@ -24,6 +24,17 @@ nav ul {
     list-style: none;
 }
 
+@media screen and (max-width: 768px) {
+    /*nav li a,
+    nav ul + span {
+        display: none;
+    }*/
+}
+/*@media screen and (min-width: 993px) {
+    nav ul {
+        flex-direction: row;
+    }
+}*/
 nav ul span {
     color: white;
 }
@@ -33,6 +44,10 @@ nav span {
     display: block;
     color: rgba(255, 255, 255, 0.5);
     padding: 0.5rem;
+}
+
+nav .hide-on-desktop {
+    color: white;
 }
 
 li a:hover {

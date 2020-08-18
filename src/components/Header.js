@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFlag, faQuestion, faAddressCard, faCode } from '@fortawesome/free-solid-svg-icons';
+import { faFlag, faQuestion, faAddressCard, faCode, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import '../styles/Header.css';
 
 class Header extends Component {
@@ -8,7 +8,7 @@ class Header extends Component {
     return (
       <React.Fragment>
         <nav>
-          <ul navbar>
+          <ul className="hide-on-mobile" navbar>
             <li>
               <span>
                 <FontAwesomeIcon icon={faFlag} />
@@ -16,20 +16,25 @@ class Header extends Component {
                 {" Укажите страну по ее флагу"}
               </span>
             </li>
-            <li>
+            <li className="hide-on-mobile">
               <a href="https://github.com/AndreyZhartun/point-the-flag">
                 <FontAwesomeIcon icon={faCode} />
                 {" Github "}
               </a>
             </li>
-            <li>
+            <li className="hide-on-mobile">
               <a href="/">
                 <FontAwesomeIcon icon={faAddressCard} />
                 {" Про меня"}
               </a>
             </li>
           </ul>
-          <span>React, leaflet.js, Nominatim API</span>
+          <span className="hide-on-mobile">React, leaflet.js, Nominatim API</span>
+          <span className="hide-on-desktop">
+            {"Потяните "}
+            <FontAwesomeIcon icon={faMapMarkerAlt} />
+            {", чтобы указать страну"}
+          </span>
         </nav>
       </React.Fragment>
     );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faFlag, faCheck, faQuestion } from '@fortawesome/free-solid-svg-icons';
 
 import { connect } from 'react-redux';
 import { /*changeCurrentFlag,*/ fetchAddress, setRandomFirstIndex } from '../redux/ActionCreators';
@@ -44,7 +44,7 @@ class GuessGame extends Component {
           <div className="col-img">
             <img src={this.props.flags[this.props.game.currentFlagIndex].path} className="flag-img" alt="[Текущий флаг]" />
           </div>
-          <div className="col-lead">
+          <div className="col-lead hide-on-mobile">
             <p>
               Флаг #{this.props.game.shownFlags.length + 1}
             </p>
@@ -52,18 +52,24 @@ class GuessGame extends Component {
               Правильных ответов: {this.props.game.correctAnswers}
             </p>
           </div>
+          <p className="col-lead-mobile hide-on-desktop">
+            <FontAwesomeIcon icon={faFlag} /> #{this.props.game.shownFlags.length + 1}
+            {" | "}
+            <FontAwesomeIcon icon={faCheck} /> {this.props.game.correctAnswers}
+          </p>
         </div>
 
-        <p>Потяните <FontAwesomeIcon icon={faMapMarkerAlt} /> маркер на карте, чтобы указать страну</p>
+        <p className="hide-on-mobile">Потяните <FontAwesomeIcon icon={faMapMarkerAlt} /> маркер на карте, чтобы указать страну</p>
         <hr />
         <p>
-          Текущие координаты <FontAwesomeIcon icon={faMapMarkerAlt} />:
+          <span className="hide-on-mobile">Текущие координаты</span> <FontAwesomeIcon icon={faMapMarkerAlt} />:
           {this.props.marker ?
             "  " + this.props.marker.lat.toFixed(2) + ", " + this.props.marker.lng.toFixed(2) :
             "Маркер не найден"}
         </p>
         <p hidden={!this.props.prevCountryMessage}>
-          {"Предыдущий флаг: "}
+          <FontAwesomeIcon icon={faQuestion} />
+          <span className="hide-on-mobile">{"Предыдущий флаг: "}</span>
           <img src={this.props.game.shownFlags.length > 0 ?
             this.props.flags[this.props.game.shownFlags[this.props.game.shownFlags.length - 1]].path
             : 'temp_path'}
@@ -76,7 +82,7 @@ class GuessGame extends Component {
           color="primary"
           disabled={this.props.requestSent || !this.props.game.isInProgress}
           onClick={this.handleConfirmation}>
-          Подтвердить выбранные координаты
+          Подтвердить <span className="hide-on-mobile">выбранные координаты</span>
         </button>
       </div>
     )

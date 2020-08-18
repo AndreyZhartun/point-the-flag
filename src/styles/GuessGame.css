@@ -10,6 +10,11 @@
     left: 65%;
     z-index: 10000;
 }
+@media screen and (max-width: 768px) {
+    .game-card {
+        left: 60%;
+    }
+}
 
 .row {
     display: flex;
@@ -23,6 +28,12 @@
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
 }
+@media screen and (max-width: 768px) {
+    .col-img {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
 
 .col-lead {
     flex-basis: 0;
@@ -32,6 +43,10 @@
 .col-lead p {
     font-size: 1.25rem;
     font-weight: 300;
+}
+
+.col-lead-mobile {
+    margin: 0.5rem auto;
 }
 
 .flag-img {
