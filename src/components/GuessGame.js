@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-import { Container, Row, Col, Jumbotron, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { connect } from 'react-redux';
-import { changeCurrentFlag, fetchAddress, setRandomFirstIndex } from '../redux/ActionCreators';
+import { /*changeCurrentFlag,*/ fetchAddress, setRandomFirstIndex } from '../redux/ActionCreators';
+import "../styles/GuessGame.css";
 
 const mapStateToProps = state => {
   return {
@@ -18,7 +18,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  changeCurrentFlag: () => { dispatch(changeCurrentFlag()) },
+  //changeCurrentFlag: () => { dispatch(changeCurrentFlag()) },
   fetchAddress: () => { dispatch(fetchAddress()) },
   setRandomFirstIndex: () => { dispatch(setRandomFirstIndex()) }
 });
@@ -38,22 +38,22 @@ class GuessGame extends Component {
 
   render() {
     return (
-      <Jumbotron className="position-fixed text-center" style={{ padding: "1rem" }}>
-        <Container>
-          <Row>
-            <Col xs="12" sm="4">
-              <img src={this.props.flags[this.props.game.currentFlagIndex].path} className="flag-img" alt="[Выбранный флаг]" />
-            </Col>
-            <Col>
-              <p className="lead">
-                Флаг #{this.props.game.shownFlags.length + 1}
-              </p>
-              <p className="lead">
-                Правильных ответов: {this.props.game.correctAnswers}
-              </p>
-            </Col>
-          </Row>
-        </Container>
+      <div className="game-card">
+
+        <div className="row">
+          <div className="col-img">
+            <img src={this.props.flags[this.props.game.currentFlagIndex].path} className="flag-img" alt="[Текущий флаг]" />
+          </div>
+          <div className="col-lead">
+            <p className="lead">
+              Флаг #{this.props.game.shownFlags.length + 1}
+            </p>
+            <p className="lead">
+              Правильных ответов: {this.props.game.correctAnswers}
+            </p>
+          </div>
+        </div>
+
         <p>Потяните <FontAwesomeIcon icon={faMapMarkerAlt} /> маркер на карте, чтобы указать страну</p>
         <hr className="my-2" />
         <p>
@@ -70,13 +70,15 @@ class GuessGame extends Component {
             className="flag-img-mini" alt="[Флаг]" />
           {" " + this.props.prevCountryMessage}
         </p>
-        <Button
+        <button
+          type="button"
+          className="button"
           color="primary"
           disabled={this.props.requestSent || !this.props.game.isInProgress}
           onClick={this.handleConfirmation}>
           Подтвердить выбранные координаты
-        </Button>
-      </Jumbotron>
+        </button>
+      </div>
     )
   }
 }
