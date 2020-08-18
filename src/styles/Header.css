@@ -1,0 +1,46 @@
+nav {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    /**/
+    background-color: #46433a;
+    min-height: 5vh;
+}
+
+nav ul {
+    flex-direction: row;
+    display: flex;
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+}
+
+nav ul span {
+    color: white;
+}
+
+li a,
+nav span {
+    display: block;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 0.5rem;
+}
+
+li a:hover {
+    text-transform: none;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/*nav > span {
+    color: rgba(255, 255, 255, 0.5);
+}*/
