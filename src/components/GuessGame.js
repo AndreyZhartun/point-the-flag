@@ -55,7 +55,7 @@ class GuessGame extends Component {
           </div>
           <p className="col-lead-mobile hide-on-desktop">
             <FontAwesomeIcon icon={faFlag} /> #{this.props.game.shownFlags.length + 1}
-            {" | "}
+            &nbsp;|&nbsp;
             <FontAwesomeIcon icon={faCheck} /> {this.props.game.correctAnswers}
           </p>
         </div>
@@ -63,9 +63,9 @@ class GuessGame extends Component {
         <p className="hide-on-mobile">Потяните <FontAwesomeIcon icon={faMapMarkerAlt} /> маркер на карте, чтобы указать страну</p>
         <hr />
         <p>
-          <span className="hide-on-mobile">Текущие координаты</span> <FontAwesomeIcon icon={faMapMarkerAlt} />:
+          <span className="hide-on-mobile">Текущие координаты</span>&nbsp;<FontAwesomeIcon icon={faMapMarkerAlt} />:&nbsp;
           {this.props.marker ?
-            "  " + this.props.marker.lat.toFixed(2) + ", " + this.props.marker.lng.toFixed(2) :
+            `${this.props.marker.lat.toFixed(2)}, ${this.props.marker.lng.toFixed(2)}` :
             "Маркер не найден"}
         </p>
         <button
@@ -81,20 +81,21 @@ class GuessGame extends Component {
             <FontAwesomeIcon icon={faCheck} />
           </span>
         </button>
-        <p hidden={!this.props.prevCountryMessage}>
-          <hr />
-          <span className="hide-on-desktop">
-            <FontAwesomeIcon icon={faArrowLeft} />
-            <FontAwesomeIcon icon={faFlag} />
-          </span>
-          <span className="hide-on-mobile">{"Предыдущий флаг: "}</span>
-          <img src={this.props.game.shownFlags.length > 0 ?
-            this.props.flags[this.props.game.shownFlags[this.props.game.shownFlags.length - 1]].path
-            : 'temp_path'}
-            className="flag-img-mini" alt="[Флаг]" />
-          <br />
-          {" " + this.props.prevCountryMessage}
-        </p>
+        <div hidden={!this.props.prevCountryMessage}>
+          <p class="prev-country-message" >
+            <span className="hide-on-desktop">
+              <FontAwesomeIcon icon={faArrowLeft} />
+              <FontAwesomeIcon icon={faFlag} />
+            </span>
+            <span className="hide-on-mobile">Предыдущий флаг:</span>
+            <img src={this.props.game.shownFlags.length > 0 ?
+              this.props.flags[this.props.game.shownFlags[this.props.game.shownFlags.length - 1]].path
+              : 'temp_path'}
+              className="flag-img-mini" alt="[Флаг]" />
+            <br />
+            {this.props.prevCountryMessage}
+          </p>
+        </div>
       </div>
     )
   }
