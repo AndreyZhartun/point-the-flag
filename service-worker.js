@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/point-the-flag/precache-manifest.5b33f9606b7fbf87f7af40aaa5dc3020.js"
+  "/point-the-flag/precache-manifest.3da7a9bdbdaa088ea828879f9ee2abf9.js"
 );
 
 self.addEventListener('message', (event) => {
