@@ -5,14 +5,17 @@
     /**/
     background-color: #e9ecef;
     border-radius: 0.3rem;
-    top: 12%;
-    right: 1%;
+    top: 4rem;
+    right: 1.5rem;
     left: 65%;
     z-index: 10000;
 }
 @media screen and (max-width: 768px) {
     .game-card {
-        left: 60%;
+        left: 55%;
+        right: 0;
+        border-radius: 0.3rem 0 0 0.3rem;
+        padding: 0.5rem;
     }
 }
 
@@ -27,6 +30,7 @@
     /* TODO: adaptive col-12 */
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
+    margin: auto 0;
 }
 @media screen and (max-width: 768px) {
     .col-img {
@@ -50,8 +54,9 @@
 }
 
 .flag-img {
-    /*min-height: 80px;*/
     width: 100%;
+    max-height: 5rem;
+    object-fit: scale-down;
 }
 
 .flag-img-mini {
