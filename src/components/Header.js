@@ -8,33 +8,40 @@ class Header extends Component {
     return (
       <React.Fragment>
         <nav>
-          <ul className="hide-on-mobile" navbar>
-            <li>
-              <span>
-                <FontAwesomeIcon icon={faFlag} />
-                <FontAwesomeIcon icon={faQuestion} />
-                {" Укажите страну по ее флагу"}
-              </span>
-            </li>
-            <li className="hide-on-mobile">
-              <a href="https://github.com/AndreyZhartun/point-the-flag">
+          <div className="hide-on-desktop">
+            <span className="white nav-item">
+              {"Потяните "}
+              <FontAwesomeIcon icon={faMapMarkerAlt} />
+              {", чтобы указать страну"}
+            </span>
+          </div>
+          <ul navbar>
+            <div className="hide-on-mobile">
+              <li className="nav-item">
+                <span className="white">
+                  <FontAwesomeIcon icon={faFlag} />
+                  <FontAwesomeIcon icon={faQuestion} />
+                  {" Укажите страну по ее флагу"}
+                </span>
+
+              </li></div>
+            <li className="nav-item">
+              <a href="https://github.com/AndreyZhartun/point-the-flag" className="gray">
                 <FontAwesomeIcon icon={faCode} />
-                {" Github "}
+                <span className="hide-on-mobile">{" Github "}</span>
               </a>
             </li>
-            <li className="hide-on-mobile">
-              <a href="/">
+            <li className="nav-item">
+              <a href="/" className="gray">
                 <FontAwesomeIcon icon={faAddressCard} />
-                {" Про меня"}
+                <span className="hide-on-mobile">{" Про меня"}</span>
               </a>
             </li>
           </ul>
-          <span className="hide-on-mobile">React, leaflet.js, Nominatim API</span>
-          <span className="hide-on-desktop">
-            {"Потяните "}
-            <FontAwesomeIcon icon={faMapMarkerAlt} />
-            {", чтобы указать страну"}
-          </span>
+          <div className="hide-on-mobile">
+            <div className="nav-item">
+              <span className="hide-on-mobile gray">React, leaflet.js, Nominatim API</span>
+            </div></div>
         </nav>
       </React.Fragment>
     );

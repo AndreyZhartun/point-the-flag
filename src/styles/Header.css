@@ -1,12 +1,4 @@
 nav {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-}
-
-nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -24,38 +16,22 @@ nav ul {
     list-style: none;
 }
 
-@media screen and (max-width: 768px) {
-    /*nav li a,
-    nav ul + span {
-        display: none;
-    }*/
-}
-/*@media screen and (min-width: 993px) {
-    nav ul {
-        flex-direction: row;
-    }
-}*/
-nav ul span {
-    color: white;
-}
-
-li a,
-nav span {
+.nav-item {
     display: block;
-    color: rgba(255, 255, 255, 0.5);
     padding: 0.5rem;
+    text-decoration: none;
 }
 
-nav .hide-on-desktop {
+.white {
     color: white;
 }
+.gray {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+}
 
-li a:hover {
+a.gray:hover {
     text-transform: none;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.75);
 }
-
-/*nav > span {
-    color: rgba(255, 255, 255, 0.5);
-}*/
