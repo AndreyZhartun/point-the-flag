@@ -39,10 +39,8 @@ class GuessGame extends Component {
     //localhost ...src={require(`../../public/${this.props.flags[this.props.game.currentFlagIndex].path}`)}
     return (
       <div className="game-card">
-
         <div className="row">
           <div className="col-img">
-
             <img src={this.props.flags[this.props.game.currentFlagIndex].path} className="flag-img" alt="[Текущий флаг]" />
           </div>
           <div className="col-lead hide-on-mobile">
@@ -59,7 +57,6 @@ class GuessGame extends Component {
             <FontAwesomeIcon icon={faCheck} /> {this.props.game.correctAnswers}
           </p>
         </div>
-
         <p className="hide-on-mobile">Потяните <FontAwesomeIcon icon={faMapMarkerAlt} /> маркер на карте, чтобы указать страну</p>
         <hr />
         <p>

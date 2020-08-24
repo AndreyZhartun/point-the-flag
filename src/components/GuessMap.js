@@ -10,7 +10,8 @@ import { changeMarkerPosition } from '../redux/ActionCreators';
 const mapStateToProps = state => {
   return {
     map: state.map,
-    marker: state.marker
+    marker: state.marker,
+    requestSent: state.requestSent
   }
 }
 
@@ -23,11 +24,11 @@ class GuessMap extends Component<{}, State> {
   refmarker = createRef()
   refmap = createRef()
 
+  //обновить координаты маркера в store, используемые при запросе к API
   updatePosition = () => {
     const marker = this.refmarker.current;
     if (marker != null) {
       const newPosition = marker.leafletElement.getLatLng();
-      // послать action "записать новую позицию"
       this.props.changeMarkerPosition(newPosition.lat, newPosition.lng);
     }
   }
@@ -40,25 +41,22 @@ class GuessMap extends Component<{}, State> {
   }
 
   render() {
-    const position = [this.props.map.center.lat, this.props.map.center.lng];
-    const markerPosition = [this.props.marker.lat, this.props.marker.lng];
-
     return (
-      <div>
-        <Map center={position} zoom={this.props.map.zoom} ref={this.refmap}>
+      <section>
+        <Map center={this.props.map.center} zoom={this.props.map.zoom} ref={this.refmap}>
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <Marker
-            draggable={true}
+            draggable={!this.props.requestSent}
             onDragend={this.updatePosition}
-            position={markerPosition}
+            position={this.props.marker}
             ref={this.refmarker}>
           </Marker>
         </Map>
         <GuessGame />
-      </div>
+      </section>
     )
   }
 }

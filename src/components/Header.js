@@ -6,13 +6,13 @@ import '../styles/Header.css';
 class Header extends Component {
   render() {
     return (
-      <React.Fragment>
+      <header>
         <nav>
           <div className="hide-on-desktop">
             <span className="white nav-item">
-              {"Потяните "}
+              Потяните&nbsp;
               <FontAwesomeIcon icon={faMapMarkerAlt} />
-              {", чтобы указать страну"}
+              &nbsp;, чтобы указать страну
             </span>
           </div>
           <ul navbar>
@@ -21,29 +21,35 @@ class Header extends Component {
                 <span className="white">
                   <FontAwesomeIcon icon={faFlag} />
                   <FontAwesomeIcon icon={faQuestion} />
-                  {" Укажите страну по ее флагу"}
+                  &nbsp;
+                  Укажите страну по ее флагу
                 </span>
-
-              </li></div>
+              </li>
+            </div>
             <li className="nav-item">
               <a href="https://github.com/AndreyZhartun/point-the-flag" className="gray">
                 <FontAwesomeIcon icon={faCode} />
-                <span className="hide-on-mobile">{" Github "}</span>
+                &nbsp;
+                <span className="hide-on-mobile">Github</span>
               </a>
             </li>
             <li className="nav-item">
               <a href="/" className="gray">
                 <FontAwesomeIcon icon={faAddressCard} />
-                <span className="hide-on-mobile">{" Про меня"}</span>
+                &nbsp;
+                <span className="hide-on-mobile">Про меня</span>
               </a>
             </li>
           </ul>
           <div className="hide-on-mobile">
             <div className="nav-item">
-              <span className="hide-on-mobile gray">React, leaflet.js, Nominatim API</span>
-            </div></div>
+              <span className="hide-on-mobile gray">
+                <a className="gray" href="https://reactjs.org/">React</a>, <a className="gray" href="https://leafletjs.com/">leaflet.js</a>, <a className="gray" href="https://nominatim.org/release-docs/develop/api/Reverse/">Nominatim API</a>
+              </span>
+            </div>
+          </div>
         </nav>
-      </React.Fragment>
+      </header>
     );
   }
 }

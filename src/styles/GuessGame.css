@@ -98,3 +98,9 @@ hr {
     background-color: #0069d9;
     border-color: #0062cc;
 }
+
+.button:disabled {
+    background-color: #3f5061;
+    border-color: #3f5061;
+    cursor: default;
+}
