@@ -7,18 +7,18 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <nav>
+        <nav className="nav">
           <div className="hide-on-desktop">
-            <span className="white nav-item">
+            <span className="nav__item">
               Потяните&nbsp;
               <FontAwesomeIcon icon={faMapMarkerAlt} />
               &nbsp;, чтобы указать страну
             </span>
           </div>
-          <ul navbar>
+          <ul>
             <div className="hide-on-mobile">
-              <li className="nav-item">
-                <span className="white">
+              <li className="nav__item">
+                <span className="nav__title">
                   <FontAwesomeIcon icon={faFlag} />
                   <FontAwesomeIcon icon={faQuestion} />
                   &nbsp;
@@ -26,15 +26,15 @@ class Header extends Component {
                 </span>
               </li>
             </div>
-            <li className="nav-item">
-              <a href="https://github.com/AndreyZhartun/point-the-flag" className="gray">
+            <li className="nav__item">
+              <a href="https://github.com/AndreyZhartun/point-the-flag" className="nav__link">
                 <FontAwesomeIcon icon={faCode} />
                 &nbsp;
                 <span className="hide-on-mobile">Github</span>
               </a>
             </li>
-            <li className="nav-item">
-              <a href="/" className="gray">
+            <li className="nav__item">
+              <a href="/" className="nav__link">
                 <FontAwesomeIcon icon={faAddressCard} />
                 &nbsp;
                 <span className="hide-on-mobile">Про меня</span>
@@ -42,10 +42,10 @@ class Header extends Component {
             </li>
           </ul>
           <div className="hide-on-mobile">
-            <div className="nav-item">
-              <span className="hide-on-mobile gray">
-                <a className="gray" href="https://reactjs.org/">React</a>, <a className="gray" href="https://leafletjs.com/">leaflet.js</a>, <a className="gray" href="https://nominatim.org/release-docs/develop/api/Reverse/">Nominatim API</a>
-              </span>
+            <div className="nav__item">
+              <a className="nav__link" href="https://reactjs.org/">React</a>,&nbsp;
+              <a className="nav__link" href="https://leafletjs.com/">leaflet.js</a>,&nbsp;
+              <a className="nav__link" href="https://nominatim.org/release-docs/develop/api/Reverse/">Nominatim API</a>
             </div>
           </div>
         </nav>

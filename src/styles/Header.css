@@ -1,4 +1,4 @@
-nav {
+.nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -8,7 +8,7 @@ nav {
     /*min-height: 5vh;*/
 }
 
-nav ul {
+.nav ul {
     flex-direction: row;
     display: flex;
     padding-left: 0;
@@ -16,21 +16,22 @@ nav ul {
     list-style: none;
 }
 
-.nav-item {
+.nav__item {
     display: block;
     padding: 0.5rem;
-    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
 }
 
-.white {
+.nav__title {
     color: white;
 }
-.gray {
-    color: rgba(255, 255, 255, 0.5);
+
+.nav__link {
     text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
 }
 
-a.gray:hover {
+.nav__link:hover {
     text-transform: none;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.75);
