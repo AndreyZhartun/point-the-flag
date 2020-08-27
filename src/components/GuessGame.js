@@ -31,7 +31,7 @@ class GuessGame extends Component {
     }
   }
   //обработка клика на кнопку
-  handleConfirmation = () => {
+  handleConfirm = () => {
     this.props.fetchAddress();
   }
 
@@ -39,11 +39,9 @@ class GuessGame extends Component {
     //localhost ...src={require(`../../public/${this.props.flags[this.props.game.currentFlagIndex].path}`)}
     return (
       <div className="game-card">
-        <div className="row">
-          <div className="col-img">
-            <img src={this.props.flags[this.props.game.currentFlagIndex].path} className="flag-img" alt="[Текущий флаг]" />
-          </div>
-          <div className="col-lead hide-on-mobile">
+        <div className="media">
+          <img className="media__image" src={this.props.flags[this.props.game.currentFlagIndex].path} alt="[Текущий флаг]" />
+          <div className="media__text hide-on-mobile">
             <p>
               Флаг #{this.props.game.shownFlags.length + 1}
             </p>
@@ -51,14 +49,14 @@ class GuessGame extends Component {
               Правильных ответов: {this.props.game.correctAnswers}
             </p>
           </div>
-          <p className="col-lead-mobile hide-on-desktop">
+          <p className="media__text hide-on-desktop">
             <FontAwesomeIcon icon={faFlag} /> #{this.props.game.shownFlags.length + 1}
             &nbsp;|&nbsp;
             <FontAwesomeIcon icon={faCheck} /> {this.props.game.correctAnswers}
           </p>
         </div>
         <p className="hide-on-mobile">Потяните <FontAwesomeIcon icon={faMapMarkerAlt} /> маркер на карте, чтобы указать страну</p>
-        <hr />
+        <hr className="game-card__divider" />
         <p>
           <span className="hide-on-mobile">Текущие координаты</span>&nbsp;<FontAwesomeIcon icon={faMapMarkerAlt} />:&nbsp;
           {this.props.marker ?
@@ -70,7 +68,7 @@ class GuessGame extends Component {
           className="button"
           color="primary"
           disabled={this.props.requestSent || !this.props.game.isInProgress}
-          onClick={this.handleConfirmation}>
+          onClick={this.handleConfirm}>
           <span className="hide-on-mobile">Подтвердить выбранные координаты</span>
           <span className="hide-on-desktop">
             <FontAwesomeIcon icon={faMapMarkerAlt} />
@@ -79,19 +77,17 @@ class GuessGame extends Component {
           </span>
         </button>
         <div hidden={!this.props.prevCountryMessage}>
-          <p class="prev-country-message" >
-            <span className="hide-on-desktop">
-              <FontAwesomeIcon icon={faArrowLeft} />
-              <FontAwesomeIcon icon={faFlag} />
-            </span>
-            <span className="hide-on-mobile">Предыдущий флаг:</span>
-            <img src={this.props.game.shownFlags.length > 0 ?
-              this.props.flags[this.props.game.shownFlags[this.props.game.shownFlags.length - 1]].path
-              : 'temp_path'}
-              className="flag-img-mini" alt="[Флаг]" />
-            <br />
-            {this.props.prevCountryMessage}
-          </p>
+          <p className="hide-on-mobile">Предыдущий флаг:</p>
+          <span className="hide-on-desktop">
+            <FontAwesomeIcon icon={faArrowLeft} />
+            <FontAwesomeIcon icon={faFlag} />
+          </span>
+          <div class="media">
+            <img src={this.props.game.shownFlags.length > 0 &&
+              this.props.flags[this.props.game.shownFlags[this.props.game.shownFlags.length - 1]].path}
+              className="media__image media__image_size_s" alt="[Предыдущий флаг]" />
+            <span className="media__text media__text_size_s">{this.props.prevCountryMessage}</span>
+          </div>
         </div>
       </div>
     )
