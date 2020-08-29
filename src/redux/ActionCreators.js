@@ -36,7 +36,7 @@ export const fetchAddress = () => (dispatch, getState) => {
     const query = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&'
         + 'lat=' + getState().marker.lat
         + '&lon=' + getState().marker.lng
-        + '&accept-language=ru';
+        + '&accept-language=en';
 
     //запрос reverse к Nominatim API
     return fetch(query)
@@ -45,7 +45,7 @@ export const fetchAddress = () => (dispatch, getState) => {
                 return response.json();
             }
             else {
-                var error = new Error('Error ' + response.status + ': ' + response.statusText);
+                var error = new Error('Ошибка ' + response.status + ': ' + response.statusText);
                 error.response = response;
                 throw error;
             }
@@ -54,8 +54,13 @@ export const fetchAddress = () => (dispatch, getState) => {
                 throw new Error(error.message);
             })
         .then((data) => {
-            //записать страну, чтобы можно было узнать правильный ответ
-            dispatch(changePrevCountryMessage(getState().flags[currentIndex].country));
+            //записать правильный ответ для показа
+            dispatch(changePreviousCountryCorrect(getState().flags[currentIndex].country));
+            if (data.address !== undefined) {
+                dispatch(changePreviousCountryGiven(data.address.country));
+            } else {
+                dispatch(changePreviousCountryGiven('N/A'));
+            }
             //если коды стран совпали, то ответ верный
             if (data.address.country_code
                 .localeCompare(getState().flags[currentIndex].code) === 0) {
@@ -89,8 +94,15 @@ export const handleError = (errorMessage) => ({
     }
 });
 
-export const changePrevCountryMessage = (country) => ({
-    type: ActionTypes.CHANGE_PREV_COUNTRY_MESSAGE,
+export const changePreviousCountryCorrect = (country) => ({
+    type: ActionTypes.CHANGE_PREVIOUS_COUNTRY_CORRECT,
+    payload: {
+        country: country
+    }
+});
+
+export const changePreviousCountryGiven = (country) => ({
+    type: ActionTypes.CHANGE_PREVIOUS_COUNTRY_GIVEN,
     payload: {
         country: country
     }

@@ -22,7 +22,8 @@ export const initialState = {
     },
     requestSent: false,
     errorMessage: "",
-    prevCountryMessage: ""
+    prevCountryMessage: "",
+    previousCountryGiven: ""
 };
 
 export const Reducer = (state, action) => {
@@ -88,11 +89,17 @@ export const Reducer = (state, action) => {
                     isInProgress: action.payload.status
                 }
             }
-        //показать флаг какой страны был показан до этого 
-        case ActionTypes.CHANGE_PREV_COUNTRY_MESSAGE:
+        //показать правильный ответ на предыдущий вопрос
+        case ActionTypes.CHANGE_PREVIOUS_COUNTRY_CORRECT:
             return {
                 ...state,
                 prevCountryMessage: action.payload.country
+            }
+        //показать данный игроком ответ на предыдущий вопрос
+        case ActionTypes.CHANGE_PREVIOUS_COUNTRY_GIVEN:
+            return {
+                ...state,
+                previousCountryGiven: action.payload.country
             }
         //изменить статус запроса
         case ActionTypes.CHANGE_REQUEST_STATUS:

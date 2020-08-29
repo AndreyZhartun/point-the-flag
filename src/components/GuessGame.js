@@ -13,6 +13,7 @@ const mapStateToProps = state => {
     game: state.game,
     requestSent: state.requestSent,
     prevCountryMessage: state.prevCountryMessage,
+    prevCountryGiven: state.previousCountryGiven,
     marker: state.marker
   }
 }
@@ -82,11 +83,21 @@ class GuessGame extends Component {
             <FontAwesomeIcon icon={faArrowLeft} />
             <FontAwesomeIcon icon={faFlag} />
           </span>
-          <div class="media">
-            <img src={this.props.game.shownFlags.length > 0 &&
-              this.props.flags[this.props.game.shownFlags[this.props.game.shownFlags.length - 1]].path}
+          <div className="media">
+            <img src={this.props.game.shownFlags.length > 0 ?
+              this.props.flags[this.props.game.shownFlags[this.props.game.shownFlags.length - 1]].path
+              : undefined}
               className="media__image media__image_size_s" alt="[Предыдущий флаг]" />
-            <span className="media__text media__text_size_s">{this.props.prevCountryMessage}</span>
+            <span className="media__text media__text_size_s">
+              <FontAwesomeIcon icon={faCheck} />
+              <br />
+              {this.props.prevCountryMessage}
+            </span>
+            <span className="media__text media__text_size_s">
+              <FontAwesomeIcon icon={faMapMarkerAlt} />
+              <br />
+              {this.props.prevCountryGiven}
+            </span>
           </div>
         </div>
       </div>
