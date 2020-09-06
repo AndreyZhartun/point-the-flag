@@ -1,14 +1,14 @@
 import React from 'react';
 
-import GuessMap from './components/GuessMap';
-import Header from './components/Header';
+import GuessMap from './GuessMap';
+import Header from './Header';
 
 import { Provider } from 'react-redux';
-import { ConfigureStore } from './redux/configureStore';
+import { ConfigureStore } from '../redux/configureStore';
 
 const store = ConfigureStore();
 
-function App() {
+const App = () => {
   return (
     <Provider store={store}>
       <Header />

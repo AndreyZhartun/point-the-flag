@@ -1,8 +1,6 @@
-import { FLAGS } from '../shared/flags.json';   //загрузка кодов и путей к флагам
 import * as ActionTypes from './ActionTypes';
 
 export const initialState = {
-    flags: FLAGS,
     game: {
         currentFlagIndex: 0,
         shownFlags: [],
@@ -22,7 +20,7 @@ export const initialState = {
     },
     requestSent: false,
     errorMessage: "",
-    prevCountryMessage: "",
+    previousCountryCorrect: "",
     previousCountryGiven: ""
 };
 
@@ -30,11 +28,6 @@ export const Reducer = (state, action) => {
     switch (action.type) {
         //записать новую позицию маркера
         case ActionTypes.CHANGE_MARKER_POSITION:
-            /*const newMarker = {
-                ...(state.marker),
-                lat: action.payload.lat,
-                lng: action.payload.lng
-            };*/
             return {
                 ...state,
                 marker: {
@@ -45,11 +38,6 @@ export const Reducer = (state, action) => {
             };
         //запомнить, что текущий флаг показан
         case ActionTypes.ADD_FLAG_TO_SHOWN_FLAGS:
-            //var newArray = state.game.shownFlags.concat(action.payload.index);
-            /*const gameWithNewShownFlags = {
-                ...(state.game),
-                shownFlags: state.game.shownFlags.concat(action.payload.index)
-            }*/
             return {
                 ...state,
                 game: {
@@ -59,10 +47,6 @@ export const Reducer = (state, action) => {
             };
         //изменить показываемый флаг
         case ActionTypes.CHANGE_CURRENT_FLAG_INDEX:
-            /*const gameWithNewIndex = {
-                ...(state.game),
-                currentFlagIndex: action.payload.index
-            };*/
             return {
                 ...state,
                 game: {
@@ -72,7 +56,6 @@ export const Reducer = (state, action) => {
             };
         //засчитать правильный ответ
         case ActionTypes.COUNT_CORRECT_ANSWER:
-            //const newCorrectAnswers = state.game.correctAnswers + 1;
             return {
                 ...state,
                 game: {
@@ -93,7 +76,7 @@ export const Reducer = (state, action) => {
         case ActionTypes.CHANGE_PREVIOUS_COUNTRY_CORRECT:
             return {
                 ...state,
-                prevCountryMessage: action.payload.country
+                previousCountryCorrect: action.payload.country
             }
         //показать данный игроком ответ на предыдущий вопрос
         case ActionTypes.CHANGE_PREVIOUS_COUNTRY_GIVEN:

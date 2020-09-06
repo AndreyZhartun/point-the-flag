@@ -1,5 +1,7 @@
 import * as ActionTypes from './ActionTypes';
 
+import { FLAGS } from '../shared/flags.json';
+
 export const changeMarkerPosition = (lat, lng) => ({
     type: ActionTypes.CHANGE_MARKER_POSITION,
     payload: {
@@ -8,9 +10,9 @@ export const changeMarkerPosition = (lat, lng) => ({
     }
 });
 
-export const setRandomFirstIndex = () => (dispatch, getState) => {
+export const setRandomFirstIndex = () => (dispatch) => {
     //определить первый случайный индекс флага
-    const randomFirstIndex = Math.floor(Math.random() * getState().flags.length);
+    const randomFirstIndex = Math.floor(Math.random() * FLAGS.length);
 
     dispatch(changeCurrentFlagIndex(randomFirstIndex));
     //записать, что игра в прогрессе
@@ -55,7 +57,7 @@ export const fetchAddress = () => (dispatch, getState) => {
             })
         .then((data) => {
             //записать правильный ответ для показа
-            dispatch(changePreviousCountryCorrect(getState().flags[currentIndex].country));
+            dispatch(changePreviousCountryCorrect(FLAGS[currentIndex].country));
             if (data.address !== undefined) {
                 dispatch(changePreviousCountryGiven(data.address.country));
             } else {
@@ -63,7 +65,7 @@ export const fetchAddress = () => (dispatch, getState) => {
             }
             //если коды стран совпали, то ответ верный
             if (data.address.country_code
-                .localeCompare(getState().flags[currentIndex].code) === 0) {
+                .localeCompare(FLAGS[currentIndex].code) === 0) {
                 dispatch(countCorrectAnswer());
             }
 
@@ -71,7 +73,7 @@ export const fetchAddress = () => (dispatch, getState) => {
             dispatch(addFlagToShownFlags(currentIndex));
 
             //вычесть из всех флагов уже просмотренные, чтобы получить массив из непоказанных флагов
-            const possibleNewIndexes = [...Array(getState().flags.length).keys()]
+            const possibleNewIndexes = [...Array(FLAGS.length).keys()]
                 .filter(index => !getState().game.shownFlags.includes(index));
 
             //если непоказанных флагов нет, то конец игры
