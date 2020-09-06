@@ -1,64 +1,64 @@
-import React, { createRef, Component } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Map, TileLayer, Marker } from 'react-leaflet';
 
 import GuessGame from './GuessGame';
 import '../styles/GuessMap.css';
 
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeMarkerPosition } from '../redux/ActionCreators';
 
-const mapStateToProps = state => {
-  return {
+const GuessMap = () => {
+
+  const dispatch = useDispatch();
+  //const refmarker = useRef(null)
+
+  const {
+    map,
+    marker,
+    requestSent
+  } = useSelector((state) => ({
     map: state.map,
     marker: state.marker,
     requestSent: state.requestSent
-  }
-}
+  }));
 
-const mapDispatchToProps = dispatch => ({
-  changeMarkerPosition: (lat, lng) => dispatch(changeMarkerPosition(lat, lng))
-});
-
-class GuessMap extends Component<{}, State> {
-
-  refmarker = createRef()
-  refmap = createRef()
+  const refmarker = useRef(null);
+  const refmap = useRef(null);
 
   //обновить координаты маркера в store, используемые при запросе к API
-  updatePosition = () => {
-    const marker = this.refmarker.current;
+  const updatePosition = () => {
+    const marker = refmarker.current;
     if (marker != null) {
       const newPosition = marker.leafletElement.getLatLng();
-      this.props.changeMarkerPosition(newPosition.lat, newPosition.lng);
+      dispatch(changeMarkerPosition(newPosition.lat, newPosition.lng));
     }
   }
 
-  componentDidUpdate = () => {
+  //useEffect
+  useEffect(() => {
     //фикс странного бага непрогрузки карты, видимо вызываемого конфликтом leaflet и create-react-app
-    if (this.refmap.current) {
-      this.refmap.current.leafletElement.invalidateSize();
+    if (refmap.current) {
+      refmap.current.leafletElement.invalidateSize();
     }
-  }
+  });
 
-  render() {
-    return (
-      <section>
-        <Map center={this.props.map.center} zoom={this.props.map.zoom} ref={this.refmap}>
-          <TileLayer
-            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker
-            draggable={!this.props.requestSent}
-            onDragend={this.updatePosition}
-            position={this.props.marker}
-            ref={this.refmarker}>
-          </Marker>
-        </Map>
-        <GuessGame />
-      </section>
-    )
-  }
+  return (
+    <section>
+      <Map center={map.center} zoom={map.zoom} ref={refmap}>
+        <TileLayer
+          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <Marker
+          draggable={!requestSent}
+          onDragend={updatePosition}
+          position={marker}
+          ref={refmarker}>
+        </Marker>
+      </Map>
+      <GuessGame />
+    </section>
+  );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GuessMap);
+export default GuessMap;
