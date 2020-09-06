@@ -27,7 +27,7 @@ const GuessGame = () => {
     marker: state.marker
   }));
 
-  //componentDidMount
+  //TODO аналог componentDidMount
   useEffect(() => {
     //случайно определить первый флаг
     console.log('xd');
