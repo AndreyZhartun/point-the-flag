@@ -8,13 +8,9 @@ import { ConfigureStore } from '../redux/configureStore';
 
 const store = ConfigureStore();
 
-const App = () => {
-  return (
-    <Provider store={store}>
-      <Header />
-      <GuessMap />
-    </Provider>
-  );
-}
+const App: React.FC = () => <Provider store={store}>
+  <Header />
+  <GuessMap />
+</Provider>;
 
 export default App;

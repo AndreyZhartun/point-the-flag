@@ -1,8 +1,9 @@
 import * as ActionTypes from './ActionTypes';
 
-import { FLAGS } from '../shared/flags.json';
+import { FLAGS } from '../../static/flags.json';
+import { AppThunkAction } from '../types';
 
-export const changeMarkerPosition = (lat, lng) => ({
+export const changeMarkerPosition = (lat: number, lng: number) => ({
     type: ActionTypes.CHANGE_MARKER_POSITION,
     payload: {
         lat: lat,
@@ -10,7 +11,7 @@ export const changeMarkerPosition = (lat, lng) => ({
     }
 });
 
-export const setRandomFirstIndex = () => (dispatch) => {
+export const setRandomFirstIndex = (): AppThunkAction => (dispatch) => {
     //определить первый случайный индекс флага
     const randomFirstIndex = Math.floor(Math.random() * FLAGS.length);
 
@@ -19,14 +20,14 @@ export const setRandomFirstIndex = () => (dispatch) => {
     dispatch(changeGameStatus(true));
 }
 
-export const changeGameStatus = (status) => ({
+export const changeGameStatus = (status: boolean) => ({
     type: ActionTypes.CHANGE_GAME_STATUS,
     payload: {
         status: status
     }
 });
 
-export const fetchAddress = () => (dispatch, getState) => {
+export const fetchAddress = (): AppThunkAction => (dispatch, getState) => {
     //задержка в 1000 мс, используемый API не рекомендует посылать запросы чаще чем через 1 сек.
     dispatch(changeRequestStatus(true));
     setTimeout(() => {
@@ -48,7 +49,7 @@ export const fetchAddress = () => (dispatch, getState) => {
             }
             else {
                 var error = new Error('Ошибка ' + response.status + ': ' + response.statusText);
-                error.response = response;
+                //error.response = response; FIXME
                 throw error;
             }
         },
@@ -73,8 +74,9 @@ export const fetchAddress = () => (dispatch, getState) => {
             dispatch(addFlagToShownFlags(currentIndex));
 
             //вычесть из всех флагов уже просмотренные, чтобы получить массив из непоказанных флагов
-            const possibleNewIndexes = [...Array(FLAGS.length).keys()]
-                .filter(index => !getState().game.shownFlags.includes(index));
+            const possibleNewIndexes = FLAGS//[...Array(FLAGS.length).keys()]
+                .filter((_, index) => !getState().game.shownFlags.includes(index))
+                .map((_, index) => index);//FIXME
 
             //если непоказанных флагов нет, то конец игры
             if (possibleNewIndexes.length === 0) {
@@ -89,21 +91,21 @@ export const fetchAddress = () => (dispatch, getState) => {
         .catch(error => dispatch(handleError(error.message)));
 }
 
-export const handleError = (errorMessage) => ({
+export const handleError = (errorMessage: string) => ({
     type: ActionTypes.HANDLE_ERROR,
     payload: {
         errorMessage: errorMessage
     }
 });
 
-export const changePreviousCountryCorrect = (country) => ({
+export const changePreviousCountryCorrect = (country: string) => ({
     type: ActionTypes.CHANGE_PREVIOUS_COUNTRY_CORRECT,
     payload: {
         country: country
     }
 });
 
-export const changePreviousCountryGiven = (country) => ({
+export const changePreviousCountryGiven = (country: string) => ({
     type: ActionTypes.CHANGE_PREVIOUS_COUNTRY_GIVEN,
     payload: {
         country: country
@@ -114,21 +116,21 @@ export const countCorrectAnswer = () => ({
     type: ActionTypes.COUNT_CORRECT_ANSWER
 });
 
-export const changeRequestStatus = (sent) => ({
+export const changeRequestStatus = (sent: boolean) => ({
     type: ActionTypes.CHANGE_REQUEST_STATUS,
     payload: {
         status: sent
     }
 })
 
-export const addFlagToShownFlags = (index) => ({
+export const addFlagToShownFlags = (index: number) => ({
     type: ActionTypes.ADD_FLAG_TO_SHOWN_FLAGS,
     payload: {
         index: index
     }
 });
 
-export const changeCurrentFlagIndex = (index) => ({
+export const changeCurrentFlagIndex = (index: number) => ({
     type: ActionTypes.CHANGE_CURRENT_FLAG_INDEX,
     payload: {
         index: index

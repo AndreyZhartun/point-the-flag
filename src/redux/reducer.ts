@@ -1,6 +1,8 @@
-import * as ActionTypes from './ActionTypes';
 
-export const initialState = {
+import * as ActionTypes from './actions/ActionTypes';
+import { RootState } from './types';
+
+export const initialState: RootState = {
     game: {
         currentFlagIndex: 0,
         shownFlags: [],
@@ -24,7 +26,10 @@ export const initialState = {
     previousCountryGiven: ""
 };
 
-export const Reducer = (state, action) => {
+export const Reducer = (
+    state: RootState,
+    action: any //FIXME
+): RootState => {
     switch (action.type) {
         //записать новую позицию маркера
         case ActionTypes.CHANGE_MARKER_POSITION:

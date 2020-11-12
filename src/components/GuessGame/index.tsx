@@ -2,14 +2,18 @@ import React, { useEffect } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faFlag, faCheck, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import "../styles/GuessGame.css";
+import "./GuessGame.css";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAddress, setRandomFirstIndex } from '../redux/ActionCreators';
+import { fetchAddress, setRandomFirstIndex } from '../../redux/actions/ActionCreators';
 
-import { FLAGS } from '../shared/flags.json';
+import { FLAGS } from '../../static/flags.json';
+import { RootState } from '../../redux/types';
 
-const GuessGame = () => {
+/**
+ * Карточка управления игрой
+ */
+const GuessGame: React.FC = () => {
 
   const dispatch = useDispatch();
 
@@ -19,7 +23,7 @@ const GuessGame = () => {
     previousCountryCorrect,
     prevCountryGiven,
     marker
-  } = useSelector((state) => ({
+  } = useSelector((state: RootState) => ({
     game: state.game,
     requestSent: state.requestSent,
     previousCountryCorrect: state.previousCountryCorrect,

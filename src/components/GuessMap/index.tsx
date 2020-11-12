@@ -1,13 +1,17 @@
 import React, { useRef, useEffect } from 'react';
 import { Map, TileLayer, Marker } from 'react-leaflet';
 
-import GuessGame from './GuessGame';
-import '../styles/GuessMap.css';
+import GuessGame from '../GuessGame';
+import './GuessMap.css';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { changeMarkerPosition } from '../redux/ActionCreators';
+import { changeMarkerPosition } from '../../redux/actions/ActionCreators';
+import { RootState } from '../../redux/types';
 
-const GuessMap = () => {
+/**
+ * Карта с перетаскиваниевым маркером
+ */
+const GuessMap: React.FC = () => {
 
   const dispatch = useDispatch();
   //const refmarker = useRef(null)
@@ -16,14 +20,14 @@ const GuessMap = () => {
     map,
     marker,
     requestSent
-  } = useSelector((state) => ({
+  } = useSelector((state: RootState) => ({
     map: state.map,
     marker: state.marker,
     requestSent: state.requestSent
   }));
 
-  const refmarker = useRef(null);
-  const refmap = useRef(null);
+  const refmarker = useRef<any>(null);
+  const refmap = useRef<any>(null);
 
   //обновить координаты маркера в store, используемые при запросе к API
   const updatePosition = () => {
@@ -42,23 +46,20 @@ const GuessMap = () => {
     }
   });
 
-  return (
-    <section>
-      <Map center={map.center} zoom={map.zoom} ref={refmap}>
-        <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker
-          draggable={!requestSent}
-          onDragend={updatePosition}
-          position={marker}
-          ref={refmarker}>
-        </Marker>
-      </Map>
-      <GuessGame />
-    </section>
-  );
+  return <section>
+    <Map center={map.center} zoom={map.zoom} ref={refmap}>
+      <TileLayer
+        attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <Marker
+        draggable={!requestSent}
+        onDragend={updatePosition}
+        position={marker}
+        ref={refmarker} />
+    </Map>
+    <GuessGame />
+  </section>;
 }
 
 export default GuessMap;
