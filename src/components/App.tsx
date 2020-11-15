@@ -4,9 +4,9 @@ import GuessMap from './GuessMap';
 import Header from './Header';
 
 import { Provider } from 'react-redux';
-import { ConfigureStore } from '../redux/configureStore';
+import { configureStore } from '../redux/configureStore';
 
-const store = ConfigureStore();
+const store = configureStore();
 
 const App: React.FC = () => <Provider store={store}>
   <Header />

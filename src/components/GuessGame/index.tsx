@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faFlag, faCheck, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -18,14 +18,19 @@ const GuessGame: React.FC = () => {
   const dispatch = useDispatch();
 
   const {
-    game,
-    requestSent,
+    game: {
+      isInProgress,
+      correctAnswers,
+      currentFlagIndex,
+      shownFlags
+    },
     previousCountryCorrect,
     prevCountryGiven,
-    marker
+    marker: {
+      lat, lng
+    }
   } = useSelector((state: RootState) => ({
     game: state.game,
-    requestSent: state.requestSent,
     previousCountryCorrect: state.previousCountryCorrect,
     prevCountryGiven: state.previousCountryGiven,
     marker: state.marker
@@ -34,50 +39,53 @@ const GuessGame: React.FC = () => {
   //TODO аналог componentDidMount
   useEffect(() => {
     //случайно определить первый флаг
-    console.log('xd');
-    if (!game.isInProgress) {
+    if (!isInProgress) {
       dispatch(setRandomFirstIndex());
     }
-  }, [dispatch, game.isInProgress])
+  }, [dispatch, isInProgress])
+
+  const [isRequestSent, setIsRequestSent] = useState(false);
 
   //обработка клика на кнопку
   const handleConfirm = () => {
     dispatch(fetchAddress());
+    //задержка в 1000 мс, используемый API не рекомендует посылать запросы чаще чем через 1 сек
+    setIsRequestSent(true);
+    setTimeout(() => setIsRequestSent(false), 1000);
   }
 
   //TODO иконки над ответами не выравнены при различии в занимаемых строках
-  //localhost ...src={require(`../../public/${lags[game.currentFlagIndex].path}`)}
+  //localhost ...src={require(`../../public/${lags[currentFlagIndex].path}`)}
   return (
     <div className="game-card">
       <div className="media">
-        <img className="media__image" src={FLAGS[game.currentFlagIndex].path} alt="[Текущий флаг]" />
+        <img className="media__image" src={FLAGS[currentFlagIndex].path} alt="[Текущий флаг]" />
         <div className="media__text hide-on-mobile">
           <p>
-            Флаг #{game.shownFlags.length + 1}
+            Флаг #{shownFlags.length + 1}
           </p>
           <p>
-            Правильных ответов: {game.correctAnswers}
+            Правильных ответов: {correctAnswers}
           </p>
         </div>
         <p className="media__text hide-on-desktop">
-          <FontAwesomeIcon icon={faFlag} /> #{game.shownFlags.length + 1}
+          <FontAwesomeIcon icon={faFlag} /> #{shownFlags.length + 1}
           &nbsp;|&nbsp;
-          <FontAwesomeIcon icon={faCheck} /> {game.correctAnswers}
+          <FontAwesomeIcon icon={faCheck} /> {correctAnswers}
         </p>
       </div>
       <p className="hide-on-mobile">Потяните <FontAwesomeIcon icon={faMapMarkerAlt} /> маркер на карте, чтобы указать страну</p>
       <hr className="game-card__divider" />
       <p>
-        <span className="hide-on-mobile">Текущие координаты</span>&nbsp;<FontAwesomeIcon icon={faMapMarkerAlt} />:&nbsp;
-        {marker ?
-          `${marker.lat.toFixed(2)}, ${marker.lng.toFixed(2)}` :
-          "Маркер не найден"}
+        <span className="hide-on-mobile">Текущие координаты</span>&nbsp;
+        <FontAwesomeIcon icon={faMapMarkerAlt} />:&nbsp;
+        {`${lat.toFixed(2)}, ${lng.toFixed(2)}`}
       </p>
       <button
         type="button"
         className="button"
         color="primary"
-        disabled={requestSent || !game.isInProgress}
+        disabled={isRequestSent || !isInProgress}
         onClick={handleConfirm}>
         <span className="hide-on-mobile">Подтвердить выбранные координаты</span>
         <span className="hide-on-desktop">
@@ -93,8 +101,8 @@ const GuessGame: React.FC = () => {
           <FontAwesomeIcon icon={faFlag} />
         </span>
         <div className="media">
-          <img src={game.shownFlags.length > 0 ?
-            FLAGS[game.shownFlags[game.shownFlags.length - 1]].path
+          <img src={shownFlags.length > 0 ?
+            FLAGS[shownFlags[shownFlags.length - 1]].path
             : undefined}
             className="media__image media__image_size_s" alt="[Предыдущий флаг]" />
           <span className="media__text media__text_size_s">

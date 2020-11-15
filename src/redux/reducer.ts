@@ -1,4 +1,5 @@
 
+import { Reducer } from 'redux';
 import * as ActionTypes from './actions/ActionTypes';
 import { RootState } from './types';
 
@@ -26,10 +27,10 @@ export const initialState: RootState = {
     previousCountryGiven: ""
 };
 
-export const Reducer = (
-    state: RootState,
+export const reducer: Reducer<RootState> = (
+    state = initialState,
     action: any //FIXME
-): RootState => {
+) => {
     switch (action.type) {
         //записать новую позицию маркера
         case ActionTypes.CHANGE_MARKER_POSITION:

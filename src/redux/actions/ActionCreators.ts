@@ -28,17 +28,11 @@ export const changeGameStatus = (status: boolean) => ({
 });
 
 export const fetchAddress = (): AppThunkAction => (dispatch, getState) => {
-    //задержка в 1000 мс, используемый API не рекомендует посылать запросы чаще чем через 1 сек.
-    dispatch(changeRequestStatus(true));
-    setTimeout(() => {
-        dispatch(changeRequestStatus(false))
-    },
-        1000
-    );
-    const currentIndex = getState().game.currentFlagIndex;
+    const { game, marker } = getState();
+    const currentIndex = game.currentFlagIndex;
     const query = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&'
-        + 'lat=' + getState().marker.lat
-        + '&lon=' + getState().marker.lng
+        + 'lat=' + marker.lat
+        + '&lon=' + marker.lng
         + '&accept-language=en';
 
     //запрос reverse к Nominatim API

@@ -14,7 +14,6 @@ import { RootState } from '../../redux/types';
 const GuessMap: React.FC = () => {
 
   const dispatch = useDispatch();
-  //const refmarker = useRef(null)
 
   const {
     map,
@@ -26,19 +25,18 @@ const GuessMap: React.FC = () => {
     requestSent: state.requestSent
   }));
 
-  const refmarker = useRef<any>(null);
-  const refmap = useRef<any>(null);
+  const refmarker = useRef<Marker>(null);
+  const refmap = useRef<Map>(null);
 
   //обновить координаты маркера в store, используемые при запросе к API
   const updatePosition = () => {
     const marker = refmarker.current;
-    if (marker != null) {
+    if (marker) {
       const newPosition = marker.leafletElement.getLatLng();
       dispatch(changeMarkerPosition(newPosition.lat, newPosition.lng));
     }
   }
 
-  //useEffect
   useEffect(() => {
     //фикс странного бага непрогрузки карты, видимо вызываемого конфликтом leaflet и create-react-app
     if (refmap.current) {
@@ -54,7 +52,7 @@ const GuessMap: React.FC = () => {
       />
       <Marker
         draggable={!requestSent}
-        onDragend={updatePosition}
+        ondragend={updatePosition}
         position={marker}
         ref={refmarker} />
     </Map>
