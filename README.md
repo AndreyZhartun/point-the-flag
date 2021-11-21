@@ -15,9 +15,9 @@ This React app is mobile-friendly.\
 I used *Redux* architecture as part of my learning experience and since the app is here mainly to show how I write code I left it.\
 The component hierarchy:
 ```
-    <App> - приложение, where everything is put together and wrapped in Redux <Provider>
+    <App> - container, where everything is put together and wrapped in Redux <Provider>
         <Header>
         <GuessMap> - the map with a draggable marker, done using leaflet.js + react-leaflet
             <GuessGame> - fixed container with game info
 ```
-* The chosen country is identified a HTTP GET request (the query parameters are the draggable marker's latitude and longitude) to [Nominatim API](https://nominatim.org/release-docs/develop/api/Reverse/) and the answer is then compared to the correct answers in `src/shared/flags.json`
+* The chosen country is identified using a HTTP GET request (the query parameters are the marker's latitude and longitude) to [Nominatim API](https://nominatim.org/release-docs/develop/api/Reverse/) and the answer is then compared to the correct answers in `src/shared/flags.json`
