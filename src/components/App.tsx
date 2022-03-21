@@ -4,7 +4,7 @@ import GuessMap from './GuessMap';
 import Header from './Header';
 
 import { Provider } from 'react-redux';
-import { configureStore } from '../redux/configureStore';
+import { configureStore } from '../redux/store/configureStore';
 
 const store = configureStore();
 

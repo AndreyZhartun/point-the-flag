@@ -1,4 +1,4 @@
-import * as ActionTypes from './ActionTypes';
+import * as ActionTypes from '../constants/constants';
 
 import { FLAGS } from '../../static/flags.json';
 import { AppThunkAction } from '../types';
@@ -6,8 +6,8 @@ import { AppThunkAction } from '../types';
 export const changeMarkerPosition = (lat: number, lng: number) => ({
     type: ActionTypes.CHANGE_MARKER_POSITION,
     payload: {
-        lat: lat,
-        lng: lng,
+        lat,
+        lng,
     }
 });
 
@@ -23,25 +23,21 @@ export const setRandomFirstIndex = (): AppThunkAction => (dispatch) => {
 export const changeGameStatus = (status: boolean) => ({
     type: ActionTypes.CHANGE_GAME_STATUS,
     payload: {
-        status: status
+        status,
     }
 });
 
 export const fetchAddress = (): AppThunkAction => (dispatch, getState) => {
     const { game, marker } = getState();
     const currentIndex = game.currentFlagIndex;
-    const query = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&'
-        + 'lat=' + marker.lat
-        + '&lon=' + marker.lng
-        + '&accept-language=en';
 
     //запрос reverse к Nominatim API
-    return fetch(query)
+    return fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${marker.lat}&lon=${marker.lng}&accept-language=en`)
         .then(response => {
             if (response.ok) {
                 return response.json();
             }
-            else {
+            else { // TODO add notify-like toast
                 var error = new Error('Ошибка ' + response.status + ': ' + response.statusText);
                 //error.response = response; FIXME
                 throw error;
@@ -88,21 +84,21 @@ export const fetchAddress = (): AppThunkAction => (dispatch, getState) => {
 export const handleError = (errorMessage: string) => ({
     type: ActionTypes.HANDLE_ERROR,
     payload: {
-        errorMessage: errorMessage
+        errorMessage,
     }
 });
 
 export const changePreviousCountryCorrect = (country: string) => ({
     type: ActionTypes.CHANGE_PREVIOUS_COUNTRY_CORRECT,
     payload: {
-        country: country
+        country,
     }
 });
 
 export const changePreviousCountryGiven = (country: string) => ({
     type: ActionTypes.CHANGE_PREVIOUS_COUNTRY_GIVEN,
     payload: {
-        country: country
+        country,
     }
 });
 
@@ -110,23 +106,16 @@ export const countCorrectAnswer = () => ({
     type: ActionTypes.COUNT_CORRECT_ANSWER
 });
 
-export const changeRequestStatus = (sent: boolean) => ({
-    type: ActionTypes.CHANGE_REQUEST_STATUS,
-    payload: {
-        status: sent
-    }
-})
-
 export const addFlagToShownFlags = (index: number) => ({
     type: ActionTypes.ADD_FLAG_TO_SHOWN_FLAGS,
     payload: {
-        index: index
+        index,
     }
 });
 
 export const changeCurrentFlagIndex = (index: number) => ({
     type: ActionTypes.CHANGE_CURRENT_FLAG_INDEX,
     payload: {
-        index: index
+        index,
     }
 });

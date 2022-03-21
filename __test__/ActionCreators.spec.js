@@ -88,8 +88,6 @@ describe('async actions', () => {
         );*/
 
         const expectedActions = [
-            { type: types.CHANGE_REQUEST_STATUS, payload: {status: true}},
-            //{ type: types.CHANGE_REQUEST_STATUS, payload: {status: false}}
             //{ type: types.CHANGE_PREV_COUNTRY_MESSAGE, payload: {country: "Sierra Leone"} },
             //{ type: types.COUNT_CORRECT_ANSWER},
             //{ type: types.ADD_FLAG_TO_SHOWN_FLAGS, payload: {index: 0} },

@@ -1,7 +1,7 @@
 
 import { Reducer } from 'redux';
-import * as ActionTypes from './actions/ActionTypes';
-import { RootState } from './types';
+import * as ActionTypes from '../constants/constants';
+import { RootState } from '../types';
 
 export const initialState: RootState = {
     game: {
@@ -10,18 +10,10 @@ export const initialState: RootState = {
         correctAnswers: 0,
         isInProgress: false
     },
-    map: {
-        center: {
-            lat: 40,
-            lng: 12,
-        },
-        zoom: 3
-    },
     marker: {
         lat: 51.505,
         lng: -0.09
     },
-    requestSent: false,
     errorMessage: "",
     previousCountryCorrect: "",
     previousCountryGiven: ""
@@ -89,12 +81,6 @@ export const reducer: Reducer<RootState> = (
             return {
                 ...state,
                 previousCountryGiven: action.payload.country
-            }
-        //изменить статус запроса
-        case ActionTypes.CHANGE_REQUEST_STATUS:
-            return {
-                ...state,
-                requestSent: action.payload.status
             }
         //записать новое сообщение ошибки
         case ActionTypes.HANDLE_ERROR:

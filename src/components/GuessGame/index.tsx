@@ -5,7 +5,7 @@ import { faMapMarkerAlt, faFlag, faCheck, faArrowLeft } from '@fortawesome/free-
 import "./GuessGame.css";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAddress, setRandomFirstIndex } from '../../redux/actions/ActionCreators';
+import { fetchAddress, setRandomFirstIndex } from '../../redux/actions/actions';
 
 import { FLAGS } from '../../static/flags.json';
 import { RootState } from '../../redux/types';

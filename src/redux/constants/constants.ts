@@ -19,11 +19,6 @@ export const ADD_FLAG_TO_SHOWN_FLAGS = 'ADD_FLAG_TO_SHOWN_FLAGS';
 export const COUNT_CORRECT_ANSWER = 'COUNT_CORRECT_ANSWER';
 
 /**
- * Изменить статус запроса
- */
-export const CHANGE_REQUEST_STATUS = 'CHANGE_REQUEST_STATUS';
-
-/**
  * Изменить правильный ответ на предыдущий вопрос
  */
 export const CHANGE_PREVIOUS_COUNTRY_CORRECT = 'CHANGE_PREVIOUS_COUNTRY_CORRECT';
