@@ -22,7 +22,7 @@
     "enzyme": "^3.11.0",
     "fetch-mock": "^9.3.1",
     "font-awesome": "^4.7.0",
-    "gh-pages": "^2.2.0",
+    "gh-pages": "^5.0.0",
     "jest": "^24.9.0",
     "leaflet": "^1.6.0",
     "popper.js": "^1.16.1",
